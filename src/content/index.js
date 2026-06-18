@@ -33,7 +33,7 @@ import InTemQR from "./InTemQR";
 import InTemChongGia from "./InTemChongGia";
 import InSach from "./InSach";
 import InTapChi from "./InTapChi";
-import InKyyeu from "./InKyyeu";
+import InKyyeu from "./InKyYeu";
 import InPhotobook from "./InPhotobook";
 import InLuanVan from "./InLuanVan";
 import InGiaoTrinh from "./InGiaoTrinh";
