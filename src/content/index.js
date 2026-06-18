@@ -33,7 +33,7 @@ import InTemQR from "./InTemQR";
 import InTemChongGia from "./InTemChongGia";
 import InSach from "./InSach";
 import InTapChi from "./InTapChi";
-import InKyyeu from "./InKyYeu";
+import InKyYeu from "./InKyYeu";
 import InPhotobook from "./InPhotobook";
 import InLuanVan from "./InLuanVan";
 import InGiaoTrinh from "./InGiaoTrinh";
@@ -88,7 +88,7 @@ export const serviceContentMap = {
   "in-tem-chong-gia": InTemChongGia,
   "in-sach": InSach,
   "in-tap-chi": InTapChi,
-  "in-ky-yeu": InKyyeu,
+  "in-ky-yeu": InKyYeu,
   "in-photobook": InPhotobook,
   "in-luan-van": InLuanVan,
   "in-giao-trinh": InGiaoTrinh,
