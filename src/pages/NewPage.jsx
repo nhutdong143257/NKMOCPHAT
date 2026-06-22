@@ -1,13 +1,32 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from "../supabase";
 
 export default function NewPage() {
   const [posts, setPosts] = useState([]);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/api/posts")
+  //     .then((res) => res.json())
+  //     .then(setPosts);
+  // }, []);
+
   useEffect(() => {
-    fetch("http://localhost:5000/api/posts")
-      .then((res) => res.json())
-      .then(setPosts);
+    const loadPosts = async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      setPosts(data);
+    };
+
+    loadPosts();
   }, []);
 
   return (
