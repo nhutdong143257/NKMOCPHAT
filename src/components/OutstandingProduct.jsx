@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../supabase";
 
 const OutstandingProduct = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const res = await fetch("http://localhost:5000/api/products");
+  //       const data = await res.json();
+
+  //       // lấy 4 sản phẩm nổi bật đầu tiên (hoặc bạn custom field sau)
+  //       setProducts(data.slice(0, 4));
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+
+  //   fetchProducts();
+  // }, []);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products");
-        const data = await res.json();
+        const { data, error } = await supabase.from("products").select("*");
 
-        // lấy 4 sản phẩm nổi bật đầu tiên (hoặc bạn custom field sau)
-        setProducts(data.slice(0, 4));
+        if (error) throw error;
+
+        setProducts((data || []).slice(0, 4));
       } catch (err) {
-        console.error(err);
+        console.error("Supabase error:", err);
       }
     };
 

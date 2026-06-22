@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabase";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -10,17 +11,31 @@ const ProductPage = () => {
   // ================= FETCH =================
   useEffect(() => {
     const fetchData = async () => {
+      // try {
+      //   const [cateRes, prodRes] = await Promise.all([
+      //     fetch("http://localhost:5000/api/categories"),
+      //     fetch("http://localhost:5000/api/products"),
+      //   ]);
+
+      //   const cateData = await cateRes.json();
+      //   const prodData = await prodRes.json();
+
+      //   setCategories(cateData);
+      //   setProducts(prodData);
+      // } catch (err) {
+      //   console.error(err);
+      // }
       try {
         const [cateRes, prodRes] = await Promise.all([
-          fetch("http://localhost:5000/api/categories"),
-          fetch("http://localhost:5000/api/products"),
+          supabase.from("categories").select("*"),
+          supabase.from("products").select("*"),
         ]);
 
-        const cateData = await cateRes.json();
-        const prodData = await prodRes.json();
+        if (cateRes.error) throw cateRes.error;
+        if (prodRes.error) throw prodRes.error;
 
-        setCategories(cateData);
-        setProducts(prodData);
+        setCategories(cateRes.data || []);
+        setProducts(prodRes.data || []);
       } catch (err) {
         console.error(err);
       }
@@ -32,9 +47,7 @@ const ProductPage = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-14">
       {categories.map((cate) => {
-        const productByCate = products.filter(
-          (p) => p.category_id === cate.id
-        );
+        const productByCate = products.filter((p) => p.category_id === cate.id);
 
         if (productByCate.length === 0) return null;
 
