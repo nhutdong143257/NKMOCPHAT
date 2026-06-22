@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { supabase } from "../../supabase";
 
 export default function Login() {
   const [form, setForm] = useState({});
@@ -17,29 +18,53 @@ export default function Login() {
     return Object.keys(err).length === 0;
   };
 
+  // const handleLogin = async () => {
+  //   if (!validate()) return;
+
+  //   try {
+  //     const res = await fetch("http://localhost:5000/api/auth/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(form),
+  //     });
+
+  //     const data = await res.json();
+
+  //     if (res.ok && data.accessToken) {
+  //       localStorage.setItem("token", data.accessToken);
+  //       navigate("/admin/dashboard");
+  //     } else {
+  //       setError({ general: data.message });
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     setError({ general: "Server lỗi" });
+  //   }
+  // };
+
   const handleLogin = async () => {
     if (!validate()) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      const { data, error: dbError } = await supabase
+        .from("users")
+        .select("*")
+        .eq("username", form.username)
+        .eq("password", form.password)
+        .single();
 
-      const data = await res.json();
-
-      if (res.ok && data.accessToken) {
-        localStorage.setItem("token", data.accessToken);
-        navigate("/admin/dashboard");
-      } else {
-        setError({ general: data.message });
+      if (dbError || !data) {
+        setError({ general: "Sai tài khoản hoặc mật khẩu" });
+        return;
       }
+
+      localStorage.setItem("admin", JSON.stringify(data));
+      navigate("/admin/dashboard");
     } catch (err) {
-      console.log(err);
-      setError({ general: "Server lỗi" });
+      console.error(err);
+      setError({ general: "Đăng nhập thất bại" });
     }
   };
 

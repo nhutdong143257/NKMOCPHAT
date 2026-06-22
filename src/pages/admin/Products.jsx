@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
+import { supabase } from "../../supabase";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -19,16 +20,27 @@ export default function Products() {
   });
 
   // ================= FETCH =================
+  // const fetchProducts = async () => {
+  //   const res = await fetch("http://localhost:5000/api/products");
+  //   const data = await res.json();
+  //   setProducts(data);
+  // };
+
   const fetchProducts = async () => {
-    const res = await fetch("http://localhost:5000/api/products");
-    const data = await res.json();
-    setProducts(data);
+    const { data } = await supabase.from("products").select("*");
+
+    setProducts(data || []);
   };
 
+  // const fetchCategories = async () => {
+  //   const res = await fetch("http://localhost:5000/api/categories");
+  //   const data = await res.json();
+  //   setCategories(data);
+  // };
   const fetchCategories = async () => {
-    const res = await fetch("http://localhost:5000/api/categories");
-    const data = await res.json();
-    setCategories(data);
+    const { data } = await supabase.from("categories").select("*");
+
+    setCategories(data || []);
   };
 
   useEffect(() => {
@@ -80,34 +92,72 @@ export default function Products() {
   };
 
   // ================= ADD =================
-  const handleAdd = async () => {
-    const formData = new FormData();
+  // const handleAdd = async () => {
+  //   const formData = new FormData();
 
-    formData.append("name", form.name);
-    formData.append("slug", form.slug);
-    formData.append("description", form.description);
-    formData.append("short_description", form.short_description);
-    formData.append("category_id", form.category_id);
-    formData.append("is_featured", form.is_featured);
+  //   formData.append("name", form.name);
+  //   formData.append("slug", form.slug);
+  //   formData.append("description", form.description);
+  //   formData.append("short_description", form.short_description);
+  //   formData.append("category_id", form.category_id);
+  //   formData.append("is_featured", form.is_featured);
+
+  //   if (form.thumbnail) {
+  //     formData.append("thumbnail", form.thumbnail);
+  //   }
+
+  //   await fetch("http://localhost:5000/api/products", {
+  //     method: "POST",
+  //     body: formData,
+  //   });
+
+  //   setForm({
+  //     name: "",
+  //     slug: "",
+  //     description: "",
+  //     short_description: "",
+  //     thumbnail: "",
+  //     category_id: "",
+  //     is_featured: false,
+  //   });
+
+  //   fetchProducts();
+  // };
+
+  const handleAdd = async () => {
+    let thumbnailUrl = "";
 
     if (form.thumbnail) {
-      formData.append("thumbnail", form.thumbnail);
+      const fileName = `${Date.now()}-${form.thumbnail.name}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("uploads")
+        .upload(fileName, form.thumbnail);
+
+      if (uploadError) {
+        console.error(uploadError);
+        return;
+      }
+
+      const { data } = supabase.storage.from("uploads").getPublicUrl(fileName);
+
+      thumbnailUrl = data.publicUrl;
     }
 
-    await fetch("http://localhost:5000/api/products", {
-      method: "POST",
-      body: formData,
+    const { error } = await supabase.from("products").insert({
+      name: form.name,
+      slug: form.slug,
+      description: form.description,
+      short_description: form.short_description,
+      thumbnail: thumbnailUrl,
+      category_id: Number(form.category_id),
+      is_featured: form.is_featured,
     });
 
-    setForm({
-      name: "",
-      slug: "",
-      description: "",
-      short_description: "",
-      thumbnail: "",
-      category_id: "",
-      is_featured: false,
-    });
+    if (error) {
+      console.error(error);
+      return;
+    }
 
     fetchProducts();
   };
@@ -128,9 +178,7 @@ export default function Products() {
       <div className="flex-1 p-6">
         {/* TITLE */}
         <div className="mb-6">
-          <h2 className="text-3xl font-bold uppercase">
-            Quản lý sản phẩm
-          </h2>
+          <h2 className="text-3xl font-bold uppercase">Quản lý sản phẩm</h2>
           <div className="w-24 h-1 bg-lime-600 mt-2 rounded-full"></div>
         </div>
 
