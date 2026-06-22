@@ -26,26 +26,30 @@ export default function PostDetailPage() {
   }, [slug]);
 
   if (!post) {
-    return <p className="text-center mt-10">Đang tải...</p>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg text-gray-500">Đang tải bài viết...</p>
+      </div>
+    );
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-slate-50 min-h-screen">
       <div className="max-w-5xl mx-auto px-6 py-12">
         {/* Category */}
         {post.category && (
-          <span className="inline-block bg-lime-600 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">
+          <span className="inline-flex bg-lime-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
             {post.category}
           </span>
         )}
 
         {/* Title */}
-        <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-gray-900 mb-6">
+        <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
           {post.title}
         </h1>
 
-        {/* Meta */}
-        <div className="flex items-center gap-4 text-gray-500 border-b pb-6 mb-8">
+        {/* Date */}
+        <div className="flex items-center gap-3 text-gray-500 border-b pb-6 mb-8">
           <span>
             🗓️ {new Date(post.created_at).toLocaleDateString("vi-VN")}
           </span>
@@ -57,7 +61,7 @@ export default function PostDetailPage() {
             <img
               src={post.thumbnail}
               alt={post.title}
-              className="w-full rounded-2xl shadow-lg"
+              className="w-full rounded-3xl shadow-xl"
             />
           </div>
         )}
@@ -65,19 +69,54 @@ export default function PostDetailPage() {
         {/* Content */}
         <article
           className="
-          prose
-          prose-lg
-          max-w-none
-          prose-headings:text-gray-900
-          prose-headings:font-bold
-          prose-p:text-gray-700
-          prose-p:leading-8
-          prose-img:rounded-xl
-          prose-img:shadow-md
-          prose-a:text-lime-600
-          prose-blockquote:border-l-lime-600
-          prose-blockquote:text-gray-600
-        "
+            text-lg
+            text-slate-700
+
+            [&_h1]:text-4xl
+            [&_h1]:font-bold
+            [&_h1]:mb-6
+
+            [&_h2]:text-3xl
+            [&_h2]:font-bold
+            [&_h2]:text-slate-900
+            [&_h2]:mt-10
+            [&_h2]:mb-5
+
+            [&_h3]:text-2xl
+            [&_h3]:font-semibold
+            [&_h3]:mt-8
+            [&_h3]:mb-4
+
+            [&_p]:leading-9
+            [&_p]:mb-5
+
+            [&_ul]:list-disc
+            [&_ul]:pl-8
+            [&_ul]:mb-6
+
+            [&_ol]:list-decimal
+            [&_ol]:pl-8
+            [&_ol]:mb-6
+
+            [&_li]:mb-2
+
+            [&_blockquote]:border-l-4
+            [&_blockquote]:border-l-lime-600
+            [&_blockquote]:bg-lime-50
+            [&_blockquote]:pl-5
+            [&_blockquote]:py-3
+            [&_blockquote]:italic
+            [&_blockquote]:rounded-r-lg
+            [&_blockquote]:my-6
+
+            [&_img]:rounded-2xl
+            [&_img]:shadow-lg
+            [&_img]:my-8
+
+            [&_a]:text-lime-600
+            [&_a]:font-medium
+            [&_a]:underline
+          "
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
