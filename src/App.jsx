@@ -54,7 +54,7 @@ function App() {
         <Route path="/dich-vu/:slug" element={<ServiceDetailPage />} />
 
         <Route path="/san-pham" element={<ProductPage />} />
-        <Route path="/san-pham/:id" element={<ProductDetail />} />
+        <Route path="/san-pham/:slug" element={<ProductDetail />} />
 
         <Route path="/tin-tuc" element={<NewPage />} />
         <Route path="/tin-tuc/:slug" element={<PostDetailPage />} />
