@@ -69,6 +69,13 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Xoá ô tìm kiếm
+  const clearSearch = () => {
+    setKeyword("");
+    setProductResults([]);
+    setCategoryResults([]);
+  };
+
   return (
     <header className="bg-lime-600/40 w-full shadow-sm relative z-100">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
@@ -109,10 +116,7 @@ const Header = () => {
               {keyword && (
                 <button
                   type="button"
-                  onClick={() => {
-                    setKeyword("");
-                    setResults([]);
-                  }}
+                  onClick={clearSearch}
                   aria-label="Xoá"
                   className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition"
                 >
@@ -135,7 +139,7 @@ const Header = () => {
 
             {/* ===== DROPDOWN ===== */}
             {show && keyword && (
-              <div className="absolute top-[60px] left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-2xl ring-1 ring-black/5 z-[9999] overflow-hidden">
+              <div className="absolute top-15 left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-2xl ring-1 ring-black/5 z-[9999] overflow-hidden">
                 {loading ? (
                   // LOADING SKELETON
                   <div className="p-3 space-y-1">
@@ -153,7 +157,7 @@ const Header = () => {
                     ))}
                   </div>
                 ) : categoryResults.length > 0 || productResults.length > 0 ? (
-                  <div className="max-h-[28rem] overflow-y-auto py-1">
+                  <div className="max-h-112 overflow-y-auto py-1">
                     {/* ===== DANH MỤC ===== */}
                     {categoryResults.length > 0 && (
                       <>
@@ -166,6 +170,7 @@ const Header = () => {
                             <div
                               key={`cate-${c.id}`}
                               onClick={() => {
+                                // Lưu ý: ProductPage cần đọc tham số ?danh-muc= để lọc
                                 navigate(`/san-pham?danh-muc=${c.id}`);
                                 setShow(false);
                               }}
@@ -303,15 +308,15 @@ const Header = () => {
 
         {/* CONTACT */}
         <div className="flex items-center gap-6 caret-transparent">
-          <div className="flex items-center gap-3 border p-3 rounded-full bg-olive-50">
-            <img src="/icon/call.png" className="w-6 h-6" />
+          <a className="flex items-center gap-3 border p-3 rounded-full bg-olive-50 hover:bg-olive-100 transition">
+            <img src="/icon/call.png" alt="Gọi điện" className="w-6 h-6" />
             <span className="text-sm font-semibold">0942 574 386</span>
-          </div>
+          </a>
           <a
             href="https://mail.google.com/mail/?view=cm&fs=1&to=tranphung.qnco@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 border p-3 rounded-full bg-olive-50"
+            className="flex items-center gap-3 border p-3 rounded-full bg-olive-50 hover:bg-olive-100 transition"
           >
             <img src="/icon/gmail.png" alt="Gửi email" className="w-6 h-6" />
             <span className="text-sm font-semibold">

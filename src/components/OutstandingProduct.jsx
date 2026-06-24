@@ -6,30 +6,16 @@ const OutstandingProduct = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const res = await fetch("http://localhost:5000/api/products");
-  //       const data = await res.json();
-
-  //       // lấy 4 sản phẩm nổi bật đầu tiên (hoặc bạn custom field sau)
-  //       setProducts(data.slice(0, 4));
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data, error } = await supabase.from("products").select("*");
+        const { data, error } = await supabase
+          .from("products")
+          .select("id, name, slug, thumbnail")
+          .limit(4);
 
         if (error) throw error;
-
-        setProducts((data || []).slice(0, 4));
+        setProducts(data || []);
       } catch (err) {
         console.error("Supabase error:", err);
       }
@@ -45,26 +31,32 @@ const OutstandingProduct = () => {
         {products.map((p) => (
           <div
             key={p.id}
-            onClick={() => navigate(`/san-pham/${p.id}`)}
+            onClick={() => navigate(`/san-pham/${p.slug}`)}
             className="group cursor-pointer"
           >
-            <div className="overflow-hidden rounded-2xl border-2 border-gray-300 bg-white hover:shadow-lg transition">
-              <img
-                src={p.thumbnail}
-                alt={p.name}
-                className="w-full h-60 object-cover group-hover:scale-105 transition duration-500"
-              />
+            <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:border-lime-200 hover:-translate-y-1 transition-all duration-300">
+              {/* ẢNH */}
+              <div className="overflow-hidden">
+                <img
+                  src={p.thumbnail}
+                  alt={p.name}
+                  loading="lazy"
+                  className="w-full h-60 object-cover group-hover:scale-110 transition duration-500"
+                />
+              </div>
 
-              <div className="p-3">
-                <h3 className="text-sm font-semibold line-clamp-2 group-hover:text-lime-600 transition">
+              {/* lớp phủ + nút khi hover */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end justify-center pb-16">
+                <span className="text-white text-sm font-medium border border-white/70 px-4 py-1.5 rounded-full backdrop-blur-sm">
+                  Xem chi tiết
+                </span>
+              </div>
+
+              {/* TÊN */}
+              <div className="p-4">
+                <h3 className="text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-lime-600 transition">
                   {p.name}
                 </h3>
-
-                {p.price && (
-                  <p className="text-lime-600 font-bold mt-1">
-                    {Number(p.price).toLocaleString("vi-VN")}₫
-                  </p>
-                )}
               </div>
             </div>
           </div>
@@ -72,9 +64,9 @@ const OutstandingProduct = () => {
       </div>
 
       {/* BUTTON */}
-      <div className="flex justify-center items-center p-8">
+      <div className="flex justify-center items-center mt-12">
         <Link to="/san-pham">
-          <button className="px-6 py-2 border border-lime-600 text-lime-600 rounded-full hover:bg-lime-600 hover:text-white transition">
+          <button className="px-7 py-2.5 border border-lime-600 text-lime-600 font-medium rounded-full hover:bg-lime-600 hover:text-white transition">
             Xem tất cả sản phẩm
           </button>
         </Link>

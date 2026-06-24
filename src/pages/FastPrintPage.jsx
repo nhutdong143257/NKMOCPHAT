@@ -12,6 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import Reveal from "../components/Reveal";
+import CountUp from "../components/CountUp";
 
 const FastPrintPage = () => {
   const [showQR, setShowQR] = useState(false);
@@ -58,15 +59,21 @@ const FastPrintPage = () => {
   ];
 
   const stats = [
-    { icon: Clock, value: "2-4h", label: "Thời gian in nhanh" },
-    { icon: Users, value: "1000+", label: "Khách hàng tin tưởng" },
-    { icon: Award, value: "100%", label: "Cam kết chất lượng" },
+    {
+      icon: Clock,
+      value: 4,
+      prefix: "2-",
+      suffix: "h",
+      label: "Thời gian in nhanh",
+    },
+    { icon: Users, value: 200, suffix: "+", label: "Khách hàng tin tưởng" },
+    { icon: Award, value: 100, suffix: "%", label: "Cam kết chất lượng" },
   ];
 
   return (
     <div className="bg-white">
       {/* HERO */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-lime-100 to-white">
+      <div className="relative overflow-hidden bg-linear-to-b from-lime-50 to-gray-100">
         {/* đốm trang trí mờ */}
         <div className="absolute -bottom-32 -left-24 w-96 h-96 bg-lime-100/50 rounded-full blur-3xl pointer-events-none" />
 
@@ -112,7 +119,11 @@ const FastPrintPage = () => {
               <div key={i} className="flex flex-col items-center py-8 px-4">
                 <s.icon className="text-lime-600 mb-3" size={28} />
                 <span className="text-3xl font-bold text-gray-900">
-                  {s.value}
+                  <CountUp
+                    end={s.value}
+                    prefix={s.prefix || ""}
+                    suffix={s.suffix || ""}
+                  />
                 </span>
                 <span className="text-sm text-gray-500 mt-1">{s.label}</span>
               </div>
@@ -175,7 +186,7 @@ const FastPrintPage = () => {
       </Reveal>
 
       {/* CTA CUỐI */}
-      <div className="bg-gradient-to-r from-gray-200 to-lime-500/20">
+      <div className="bg-linear-to-r from-lime-50 to-lime-500/20 mb-5">
         <div className="max-w-7xl mx-auto px-6 py-16 text-center">
           <Reveal>
             <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase text-gray-900">

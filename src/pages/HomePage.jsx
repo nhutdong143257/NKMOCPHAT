@@ -17,7 +17,7 @@ const HomePage = () => {
 
       {/* Special Products */}
       <Reveal>
-        <div className="text-center max-w-2xl mx-auto mb-8 mt-16">
+        <div className="text-center max-w-2xl mx-auto mb-8">
           <h2 className="text-3xl font-bold text-gray-800 uppercase">
             sản phẩm nổi bật
           </h2>
