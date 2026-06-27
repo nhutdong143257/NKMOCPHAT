@@ -10,69 +10,52 @@ import unilever from "/image/brand/unilever.png";
 import ysl from "/image/brand/ysl.png";
 
 const brands = [
-  {
-    name: "Google",
-    logo: google,
-  },
-  {
-    name: "Shopee",
-    logo: shopee,
-  },
-  {
-    name: "TikTok",
-    logo: tiktok,
-  },
-  {
-    name: "Lazada",
-    logo: lazada,
-  },
-  {
-    name: "AstraZeneca",
-    logo: astrazeneca,
-  },
-  {
-    name: "Heineken",
-    logo: heineken,
-  },
-  {
-    name: "Lorea",
-    logo: lorea,
-  },
-  {
-    name: "Unilever",
-    logo: unilever,
-  },
-  {
-    name: "YSL",
-    logo: ysl,
-  },
+  { name: "Google", logo: google },
+  { name: "Shopee", logo: shopee },
+  { name: "TikTok", logo: tiktok },
+  { name: "Lazada", logo: lazada },
+  { name: "AstraZeneca", logo: astrazeneca },
+  { name: "Heineken", logo: heineken },
+  { name: "Lorea", logo: lorea },
+  { name: "Unilever", logo: unilever },
+  { name: "YSL", logo: ysl },
 ];
 
 const Brand = () => {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-6 py-16">
       {/* Title */}
-      <div className="text-center max-w-2xl mx-auto mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 uppercase">
-          các nhãn hàng đã tin tưởng chúng tôi
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <h2 className="text-3xl font-bold text-gray-900 uppercase">
+          Các nhãn hàng đã tin tưởng chúng tôi
         </h2>
-
-        <div className="w-24 h-1 bg-lime-600 mx-auto mt-4 rounded-full"></div>
+        <p className="text-gray-500 mt-4 leading-relaxed">
+          Đồng hành cùng nhiều thương hiệu lớn trong và ngoài nước.
+        </p>
+        <div className="w-24 h-1 bg-lime-600 mx-auto mt-5 rounded-full"></div>
       </div>
 
       {/* SCROLL MODE */}
       {!showAll && (
-        <div className="overflow-hidden relative">
-          <div className="flex gap-12 animate-scroll whitespace-nowrap hover:[animation-play-state:paused]">
+        <div className="relative overflow-hidden">
+          {/* mờ dần 2 mép cho mượt */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
+
+          <div className="flex gap-6 animate-scroll whitespace-nowrap hover:[animation-play-state:paused]">
             {[...brands, ...brands].map((brand, index) => (
-              <img
+              <div
                 key={index}
-                src={brand.logo}
-                alt={brand.name}
-                className="h-20 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition duration-300"
-              />
+                className="shrink-0 w-44 h-28 flex items-center justify-center bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-lime-200 transition duration-300 group"
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="max-h-12 max-w-[70%] object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300"
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -80,13 +63,16 @@ const Brand = () => {
 
       {/* GRID MODE */}
       {showAll && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {brands.map((brand, index) => (
-            <div key={index} className="flex justify-center">
+            <div
+              key={index}
+              className="h-28 flex items-center justify-center bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-lime-200 hover:-translate-y-1 transition duration-300 group"
+            >
               <img
                 src={brand.logo}
                 alt={brand.name}
-                className="h-20 object-contain opacity-80 hover:scale-110 transition duration-300"
+                className="max-h-12 max-w-[70%] object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-300"
               />
             </div>
           ))}
@@ -94,16 +80,14 @@ const Brand = () => {
       )}
 
       {/* BUTTON */}
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-10">
         <button
           onClick={() => setShowAll(!showAll)}
-          className="px-6 py-2 border border-lime-600 text-lime-600 rounded-full hover:bg-lime-600 hover:text-white transition"
+          className="px-7 py-2.5 border border-lime-600 text-lime-600 font-medium rounded-full hover:bg-lime-600 hover:text-white transition"
         >
           {showAll ? "Thu gọn" : "Xem tất cả đối tác"}
         </button>
       </div>
-
-      {/* ANIMATION STYLE */}
     </div>
   );
 };

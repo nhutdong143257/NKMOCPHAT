@@ -354,7 +354,7 @@ const ProductDetail = () => {
 
         {/* ===== FAQ ===== */}
         <Reveal>
-          <div className="mt-15 max-w-3xl mx-auto uppercase">
+          <div className="mt-15 max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-3">
               Câu hỏi thường gặp
             </h2>
@@ -383,7 +383,7 @@ const ProductDetail = () => {
                   key={i}
                   className="group border border-gray-100 rounded-2xl px-5 py-4 hover:border-lime-200 transition"
                 >
-                  <summary className="flex items-center justify-between cursor-pointer font-semibold text-gray-800 list-none">
+                  <summary className="flex items-center justify-between cursor-pointer font-semibold text-gray-800 list-none uppercase">
                     {item.q}
                     <ChevronRight
                       size={20}
@@ -486,7 +486,7 @@ const ProductDetail = () => {
       {zoomOpen && (
         <div
           onClick={() => setZoomOpen(false)}
-          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-9999 bg-black/90 flex items-center justify-center p-4"
         >
           {/* Nút đóng */}
           <button

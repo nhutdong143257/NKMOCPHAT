@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "../../supabase";
-import { User, Lock, Eye, EyeOff, LogIn, ArrowLeft } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, LogIn, ArrowLeft } from "lucide-react";
 
 export default function Login() {
   const [form, setForm] = useState({});
@@ -12,8 +12,8 @@ export default function Login() {
 
   const validate = () => {
     let err = {};
-    if (!form.username?.trim()) err.username = "Vui lòng nhập tài khoản";
-    if (!form.password?.trim()) err.password = "Vui lòng nhập mật khẩu";
+    if (!form.email?.trim()) err.email = "Nhập email";
+    if (!form.password?.trim()) err.password = "Nhập mật khẩu";
     setError(err);
     return Object.keys(err).length === 0;
   };
@@ -23,19 +23,16 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const { data, error: dbError } = await supabase
-        .from("users")
-        .select("*")
-        .eq("username", form.username)
-        .eq("password", form.password)
-        .single();
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
+      });
 
-      if (dbError || !data) {
-        setError({ general: "Sai tài khoản hoặc mật khẩu" });
+      if (authError) {
+        setError({ general: "Sai email hoặc mật khẩu" });
         return;
       }
 
-      localStorage.setItem("admin", JSON.stringify(data));
       navigate("/admin/dashboard");
     } catch (err) {
       console.error(err);
@@ -45,7 +42,6 @@ export default function Login() {
     }
   };
 
-  // Cho phép nhấn Enter để đăng nhập
   const handleKeyDown = (e) => {
     if (e.key === "Enter") handleLogin();
   };
@@ -53,22 +49,22 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-lime-100 via-gray-100 to-lime-50 px-4 py-10">
       <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden">
-        {/* LEFT — Logo */}
-        <div className="md:w-1/2 flex flex-col items-center justify-center bg-linear-to-br from-lime-100 to-gray-200 p-10 text-center">
+        {/* LEFT */}
+        <div className="md:w-1/2 flex flex-col items-center justify-center bg-linear-to-br from-lime-600 to-lime-700 p-10 text-center">
           <img
             className="w-56 mb-6 drop-shadow-lg"
             src="/MocPhatLogo.png"
             alt="MocPhatLogo"
           />
-          <h3 className="text-black text-xl font-bold uppercase">
+          <h3 className="text-white text-xl font-bold uppercase">
             Trang quản trị
           </h3>
-          <p className="text-gray-600 text-sm mt-2 leading-relaxed">
+          <p className="text-lime-50 text-sm mt-2 leading-relaxed">
             Hệ thống quản lý nội dung Công ty TNHH NK Mộc Phát
           </p>
         </div>
 
-        {/* RIGHT — Form */}
+        {/* RIGHT */}
         <div className="md:w-1/2 flex flex-col justify-center px-8 sm:px-12 py-12">
           <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center uppercase">
             Đăng <span className="text-lime-700">nhập</span>
@@ -77,20 +73,21 @@ export default function Login() {
             Vui lòng nhập thông tin để tiếp tục
           </p>
 
-          {/* USERNAME */}
+          {/* EMAIL */}
           <div className="mb-1">
             <div className="flex items-center gap-3 px-4 h-12 rounded-full bg-gray-100 border-2 border-transparent focus-within:border-lime-500 focus-within:bg-white transition">
-              <User size={18} className="text-gray-400 shrink-0" />
+              <Mail size={18} className="text-gray-400 shrink-0" />
               <input
-                placeholder="Tài khoản..."
-                value={form.username || ""}
-                onChange={(e) => setForm({ ...form, username: e.target.value })}
+                type="email"
+                placeholder="Email..."
+                value={form.email || ""}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
                 onKeyDown={handleKeyDown}
                 className="w-full bg-transparent outline-none text-sm text-gray-700"
               />
             </div>
-            {error.username && (
-              <p className="text-red-500 text-xs mt-1 ml-4">{error.username}</p>
+            {error.email && (
+              <p className="text-red-500 text-xs mt-1 ml-4">{error.email}</p>
             )}
           </div>
 
@@ -143,10 +140,6 @@ export default function Login() {
               </>
             )}
           </button>
-
-          <p className="text-xs text-gray-400 mt-4 text-center cursor-pointer hover:text-gray-600 transition">
-            Quên tài khoản / mật khẩu?
-          </p>
 
           <Link
             to="/"

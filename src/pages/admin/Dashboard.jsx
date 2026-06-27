@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { supabase } from "../../supabase";
-import { Package, Newspaper, Users, Layers, ArrowRight } from "lucide-react";
+import { Package, Newspaper, Star, Layers, ArrowRight } from "lucide-react";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
     total_products: 0,
     total_posts: 0,
-    total_users: 0,
+    total_featured: 0,
     total_categories: 0,
   });
   const [recentProducts, setRecentProducts] = useState([]);
@@ -21,14 +21,17 @@ export default function Dashboard() {
         const [
           { count: productsCount },
           { count: postsCount },
-          { count: usersCount },
+          { count: featuredCount },
           { count: categoriesCount },
           { data: latestProducts },
           { data: latestPosts },
         ] = await Promise.all([
           supabase.from("products").select("*", { count: "exact", head: true }),
           supabase.from("posts").select("*", { count: "exact", head: true }),
-          supabase.from("users").select("*", { count: "exact", head: true }),
+          supabase
+            .from("products")
+            .select("*", { count: "exact", head: true })
+            .eq("is_featured", true),
           supabase
             .from("categories")
             .select("*", { count: "exact", head: true }),
@@ -47,7 +50,7 @@ export default function Dashboard() {
         setStats({
           total_products: productsCount || 0,
           total_posts: postsCount || 0,
-          total_users: usersCount || 0,
+          total_featured: featuredCount || 0,
           total_categories: categoriesCount || 0,
         });
         setRecentProducts(latestProducts || []);
@@ -74,29 +77,32 @@ export default function Dashboard() {
       label: "Sản phẩm",
       value: stats.total_products,
       icon: Package,
-      color: "text-lime-600",
+      color: "text-gray-900",
       bg: "bg-lime-100",
+      to: "/admin/products",
     },
     {
       label: "Tin tức",
       value: stats.total_posts,
       icon: Newspaper,
-      color: "text-lime-600",
+      color: "text-gray-900",
       bg: "bg-lime-100",
+      to: "/admin/posts",
     },
     {
       label: "Danh mục",
       value: stats.total_categories,
       icon: Layers,
-      color: "text-lime-600",
+      color: "text-gray-900",
       bg: "bg-lime-100",
     },
     {
-      label: "Người dùng",
-      value: stats.total_users,
-      icon: Users,
-      color: "text-lime-600",
+      label: "Sản phẩm nổi bật",
+      value: stats.total_featured,
+      icon: Star,
+      color: "text-gray-900",
       bg: "bg-lime-100",
+      to: "/admin/products",
     },
   ];
 

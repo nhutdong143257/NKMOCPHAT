@@ -1,21 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  LayoutDashboard,
-  Package,
-  Newspaper,
-  LogOut,
-} from "lucide-react";
+import { LayoutDashboard, Package, Newspaper, LogOut } from "lucide-react";
+import { supabase } from "../supabase";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     const ok = confirm("Bạn có chắc muốn đăng xuất không?");
     if (!ok) return;
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("admin"); // trang Login lưu key "admin"
+    await supabase.auth.signOut();
     navigate("/admin/login");
   };
 
