@@ -2,15 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const navItemClass = ({ isActive }) =>
-  `cursor-pointer pb-1 border-b-2 transition-all duration-300 ${
+  `cursor-pointer pb-1 border-b-2 transition-all duration-300 whitespace-nowrap ${
     isActive ? "border-lime-600" : "border-transparent hover:border-lime-600"
   }`;
 
 const Navbar = () => {
   return (
     <nav className="bg-white/70 backdrop-blur-md shadow-sm pt-1 sticky top-0 z-50 caret-transparent">
-      <div className="max-w-7xl mx-auto">
-        <ul className="flex justify-center gap-10 py-3 font-medium text-gray-800">
+      <div className="max-w-7xl mx-auto px-4">
+        <ul className="flex justify-center gap-4 sm:gap-7 md:gap-10 py-3 font-medium text-sm sm:text-base text-gray-800 overflow-x-auto">
           <NavLink to="/" className={navItemClass}>
             Giới thiệu
           </NavLink>

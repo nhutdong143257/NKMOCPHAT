@@ -25,13 +25,11 @@ const Header = () => {
 
       try {
         const [prodRes, cateRes] = await Promise.all([
-          // Tìm sản phẩm theo tên
           supabase
             .from("products")
             .select("id, name, slug, thumbnail")
             .ilike("name", `%${keyword}%`)
             .limit(6),
-          // Tìm danh mục theo tên + đếm số sản phẩm trong danh mục
           supabase
             .from("categories")
             .select("id, name, products(count)")
@@ -69,7 +67,6 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Xoá ô tìm kiếm
   const clearSearch = () => {
     setKeyword("");
     setProductResults([]);
@@ -78,21 +75,24 @@ const Header = () => {
 
   return (
     <header className="bg-lime-600/40 w-full shadow-sm relative z-100">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 md:gap-6 px-4 md:px-6 py-3">
         {/* LOGO */}
-        <Link to="/">
+        <Link to="/" className="shrink-0">
           <img
-            className="w-32 brightness-125 caret-transparent hover:brightness-150 transition-all"
+            className="w-24 md:w-32 brightness-125 caret-transparent hover:brightness-150 transition-all"
             src="/MocPhatLogo.png"
             alt="logo"
           />
         </Link>
 
         {/* SEARCH */}
-        <div ref={boxRef} className="flex-1 flex justify-center px-8 relative">
+        <div
+          ref={boxRef}
+          className="flex-1 flex justify-center md:px-8 relative min-w-0"
+        >
           <div className="relative w-full max-w-xl">
             {/* Ô nhập */}
-            <div className="group flex items-center gap-3 bg-white border border-gray-200 pl-5 pr-2 h-12 rounded-full w-full shadow-sm transition-all duration-300 focus-within:border-gray-900 focus-within:ring-4 focus-within:ring-gray-900/20 focus-within:shadow-lg">
+            <div className="group flex items-center gap-2 md:gap-3 bg-white border border-gray-200 pl-4 md:pl-5 pr-2 h-10 md:h-12 rounded-full w-full shadow-sm transition-all duration-300 focus-within:border-gray-900 focus-within:ring-4 focus-within:ring-gray-900/20 focus-within:shadow-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -105,14 +105,13 @@ const Header = () => {
 
               <input
                 type="text"
-                placeholder="Bạn cần tìm sản phẩm gì?"
+                placeholder="Tìm sản phẩm..."
                 className="w-full outline-none bg-transparent text-gray-700 text-sm placeholder:text-gray-400"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 onFocus={() => keyword && setShow(true)}
               />
 
-              {/* Nút xoá nhanh */}
               {keyword && (
                 <button
                   type="button"
@@ -139,9 +138,8 @@ const Header = () => {
 
             {/* ===== DROPDOWN ===== */}
             {show && keyword && (
-              <div className="absolute top-15 left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-2xl ring-1 ring-black/5 z-[9999] overflow-hidden">
+              <div className="absolute top-12 md:top-15 left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-2xl ring-1 ring-black/5 z-9999 overflow-hidden">
                 {loading ? (
-                  // LOADING SKELETON
                   <div className="p-3 space-y-1">
                     {Array.from({ length: 3 }).map((_, i) => (
                       <div
@@ -158,7 +156,7 @@ const Header = () => {
                   </div>
                 ) : categoryResults.length > 0 || productResults.length > 0 ? (
                   <div className="max-h-112 overflow-y-auto py-1">
-                    {/* ===== DANH MỤC ===== */}
+                    {/* DANH MỤC */}
                     {categoryResults.length > 0 && (
                       <>
                         <div className="px-4 pt-3 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wide">
@@ -170,13 +168,11 @@ const Header = () => {
                             <div
                               key={`cate-${c.id}`}
                               onClick={() => {
-                                // Lưu ý: ProductPage cần đọc tham số ?danh-muc= để lọc
                                 navigate(`/san-pham?danh-muc=${c.id}`);
                                 setShow(false);
                               }}
                               className="group flex items-center gap-3 px-4 py-2.5 mx-2 rounded-xl hover:bg-lime-50 cursor-pointer transition-all duration-150"
                             >
-                              {/* Icon danh mục */}
                               <div className="w-12 h-12 rounded-lg bg-lime-100 flex items-center justify-center shrink-0">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -239,7 +235,7 @@ const Header = () => {
                       </>
                     )}
 
-                    {/* ===== SẢN PHẨM ===== */}
+                    {/* SẢN PHẨM */}
                     {productResults.length > 0 && (
                       <>
                         <div className="px-4 pt-3 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wide">
@@ -281,7 +277,6 @@ const Header = () => {
                     )}
                   </div>
                 ) : (
-                  // KHÔNG CÓ KẾT QUẢ
                   <div className="flex flex-col items-center justify-center py-10 text-gray-400">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -307,19 +302,27 @@ const Header = () => {
         </div>
 
         {/* CONTACT */}
-        <div className="flex items-center gap-6 caret-transparent">
-          <a className="flex items-center gap-3 border p-3 rounded-full bg-olive-50 hover:bg-olive-100 transition">
+        <div className="flex items-center gap-2 md:gap-6 caret-transparent shrink-0">
+          {/* GỌI ĐIỆN */}
+          <a
+            href="tel:0942574386"
+            className="flex items-center justify-center gap-3 border rounded-full bg-olive-50 hover:bg-olive-100 transition w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-3"
+          >
             <img src="/icon/call.png" alt="Gọi điện" className="w-6 h-6" />
-            <span className="text-sm font-semibold">0942 574 386</span>
+            <span className="hidden md:inline text-sm font-semibold">
+              0942 574 386
+            </span>
           </a>
+
+          {/* EMAIL */}
           <a
             href="https://mail.google.com/mail/?view=cm&fs=1&to=tranphung.qnco@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 border p-3 rounded-full bg-olive-50 hover:bg-olive-100 transition"
+            className="flex items-center justify-center gap-3 border rounded-full bg-olive-50 hover:bg-olive-100 transition w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-3"
           >
             <img src="/icon/gmail.png" alt="Gửi email" className="w-6 h-6" />
-            <span className="text-sm font-semibold">
+            <span className="hidden md:inline text-sm font-semibold">
               tranphung.qnco@gmail.com
             </span>
           </a>

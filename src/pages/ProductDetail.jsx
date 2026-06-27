@@ -156,9 +156,9 @@ const ProductDetail = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <Reveal>
-          <div className="grid lg:grid-cols-2 gap-14 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">
             {/* LEFT — GALLERY */}
             <div className="lg:sticky lg:top-6">
               {/* Ảnh chính: bấm vào để zoom */}
@@ -169,7 +169,7 @@ const ProductDetail = () => {
                 <img
                   src={images[activeImage]}
                   alt={product.name}
-                  className="w-full h-137 object-cover transition duration-500 group-hover:scale-105"
+                  className="w-full h-72 sm:h-96 lg:h-137 object-cover transition duration-500 group-hover:scale-105"
                 />
                 {/* gợi ý zoom */}
                 <div className="absolute bottom-4 right-4 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition">
@@ -210,7 +210,7 @@ const ProductDetail = () => {
                     <button
                       key={index}
                       onClick={() => setActiveImage(index)}
-                      className={`w-24 h-24 rounded-2xl overflow-hidden border-2 shrink-0 transition ${
+                      className={`w-16 h-16 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 shrink-0 transition ${
                         activeImage === index
                           ? "border-lime-600 ring-2 ring-lime-600/30"
                           : "border-transparent hover:border-gray-300"
@@ -236,7 +236,7 @@ const ProductDetail = () => {
                 </span>
               )}
 
-              <h1 className="text-4xl font-bold leading-tight text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-gray-900">
                 {product.name}
               </h1>
               <div className="w-20 h-1 bg-lime-600 rounded-full mt-4"></div>
@@ -304,7 +304,7 @@ const ProductDetail = () => {
         {/* ===== QUY TRÌNH ĐẶT IN ===== */}
         <Reveal>
           <div className="mt-15 max-w-5xl mx-auto uppercase">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3">
               Quy trình đặt in
             </h2>
             <div className="w-20 h-1 bg-lime-600 rounded-full mx-auto mb-12"></div>
@@ -355,7 +355,7 @@ const ProductDetail = () => {
         {/* ===== FAQ ===== */}
         <Reveal>
           <div className="mt-15 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3">
               Câu hỏi thường gặp
             </h2>
             <div className="w-20 h-1 bg-lime-600 rounded-full mx-auto mb-12"></div>
@@ -402,16 +402,14 @@ const ProductDetail = () => {
         {/* ===== SẢN PHẨM KHÁC ===== */}
         {otherProducts.length > 0 && (
           <Reveal>
-            <div className="mt-15">
-              <div className="mt-15 max-w-5xl mx-auto uppercase">
-                <h2 className="text-3xl font-bold text-gray-900 text-center mb-3">
-                  Các sản phẩm khác
+            <div className="mt-16 sm:mt-24">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 uppercase">
+                  Sản phẩm khác
                 </h2>
-                <div className="w-20 h-1 bg-lime-600 rounded-full mx-auto mb-12"></div>
-
                 <button
                   onClick={() => navigate("/san-pham")}
-                  className="text-sm font-medium hover:underline hover:text-lime-600 transition"
+                  className="text-sm font-medium hover:underline hover:text-lime-600 transition shrink-0"
                 >
                   Xem tất cả
                 </button>
