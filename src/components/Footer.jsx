@@ -17,21 +17,20 @@ const Footer = () => {
     "Chính sách lưu kho",
   ];
 
-  // Địa chỉ để nhúng bản đồ
   const address = "86/25E Ông Ích Khiêm, Phường Hoà Bình, TP.HCM";
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
     address,
   )}&output=embed`;
 
   return (
-    <footer className="bg-linear-to-b bg-gray-100 border-t border-lime-100 caret-transparent">
-      <div className="max-w-7xl mx-auto px-6 py-14">
-        <div className="grid lg:grid-cols-3 gap-10">
+    <footer className="bg-gray-100 border-t border-lime-100 caret-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
           {/* CỘT 1 — Logo + giới thiệu */}
-          <div className="bg-white p-7 rounded-3xl border border-gray-100 shadow-sm">
+          <div className="bg-white p-6 sm:p-7 rounded-3xl border border-gray-100 shadow-sm sm:col-span-2 lg:col-span-1">
             <div className="flex justify-center mb-5">
               <img
-                className="w-48 brightness-125"
+                className="w-40 sm:w-48 brightness-125"
                 src="/MocPhatLogo.png"
                 alt="MocPhatLogo"
               />
@@ -162,7 +161,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-200 mt-12 pt-6">
+        <div className="border-t border-gray-200 mt-10 sm:mt-12 pt-6">
           <p className="text-center text-gray-500 text-sm">
             © 2026 - Công ty TNHH NK Mộc Phát. All rights reserved.
           </p>

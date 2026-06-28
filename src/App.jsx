@@ -24,6 +24,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Breadcrumbs from "./components/Breadcrumbs";
 import ScrollToTop from "./components/ScrollToTop";
+import BackToTop from "./components/BackToTop";
 
 // Protected route
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -45,6 +46,7 @@ function App() {
       )}
 
       <ScrollToTop />
+      <BackToTop/>
 
       <Routes>
         {/* USER */}

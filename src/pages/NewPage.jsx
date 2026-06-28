@@ -34,9 +34,9 @@ export default function NewPage() {
 
   return (
     <Reveal>
-      <div className="max-w-7xl mx-auto px-6 py-12 caret-transparent">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold uppercase tracking-wide text-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12 caret-transparent">
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-wide text-gray-900">
             Tin tức
           </h2>
           <div className="w-24 h-1 bg-lime-600 mx-auto mt-4 rounded-full"></div>

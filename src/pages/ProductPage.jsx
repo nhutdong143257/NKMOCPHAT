@@ -212,14 +212,20 @@ const ProductPage = () => {
 
               {/* PRODUCT GRID */}
               <Reveal>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                  className="
+      flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4
+      sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-8 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0
+      scrollbar-none [-ms-overflow-style:none]
+    "
+                >
                   {productByCate.map((p, idx) => {
                     const eager = cateIndex === 0 && idx < 4;
                     return (
                       <div
                         key={p.id}
                         onClick={() => navigate(`/san-pham/${p.slug}`)}
-                        className="group cursor-pointer"
+                        className="group cursor-pointer snap-start shrink-0 w-[70%] sm:w-auto"
                       >
                         <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 hover:border-gray-200 transition-all duration-300 hover:-translate-y-1">
                           <div className="overflow-hidden bg-gray-100">

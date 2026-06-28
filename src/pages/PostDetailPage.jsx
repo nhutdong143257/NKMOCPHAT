@@ -35,7 +35,7 @@ export default function PostDetailPage() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Category */}
         {post.category && (
           <span className="inline-flex bg-lime-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -44,7 +44,7 @@ export default function PostDetailPage() {
         )}
 
         {/* Title */}
-        <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
           {post.title}
         </h1>
 
@@ -69,33 +69,41 @@ export default function PostDetailPage() {
         {/* Content */}
         <article
           className="
-            text-lg
+            text-base sm:text-lg
             text-slate-700
 
-            [&_h1]:text-4xl
+            [&_h1]:text-2xl
+            sm:[&_h1]:text-4xl
             [&_h1]:font-bold
             [&_h1]:mb-6
 
-            [&_h2]:text-3xl
+            [&_h2]:text-xl
+            sm:[&_h2]:text-3xl
             [&_h2]:font-bold
             [&_h2]:text-slate-900
-            [&_h2]:mt-10
+            [&_h2]:mt-8
+            sm:[&_h2]:mt-10
             [&_h2]:mb-5
 
-            [&_h3]:text-2xl
+            [&_h3]:text-lg
+            sm:[&_h3]:text-2xl
             [&_h3]:font-semibold
-            [&_h3]:mt-8
+            [&_h3]:mt-6
+            sm:[&_h3]:mt-8
             [&_h3]:mb-4
 
-            [&_p]:leading-9
+            [&_p]:leading-8
+            sm:[&_p]:leading-9
             [&_p]:mb-5
 
             [&_ul]:list-disc
-            [&_ul]:pl-8
+            [&_ul]:pl-6
+            sm:[&_ul]:pl-8
             [&_ul]:mb-6
 
             [&_ol]:list-decimal
-            [&_ol]:pl-8
+            [&_ol]:pl-6
+            sm:[&_ol]:pl-8
             [&_ol]:mb-6
 
             [&_li]:mb-2

@@ -77,15 +77,15 @@ const FastPrintPage = () => {
         {/* đốm trang trí mờ */}
         <div className="absolute -bottom-32 -left-24 w-96 h-96 bg-lime-100/50 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-24 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
           <Reveal>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight uppercase">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight uppercase">
               Dịch vụ <span className="text-lime-600">In Nhanh - In Gấp</span>
             </h1>
           </Reveal>
 
           <Reveal>
-            <p className="mt-6 text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="mt-6 text-gray-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
               Chúng tôi cung cấp dịch vụ in ấn nhanh chóng, đáp ứng các đơn hàng
               gấp cho sự kiện, marketing và nhu cầu phát sinh. Cam kết chất
               lượng sắc nét, đúng tiến độ và hỗ trợ tận tâm.
@@ -93,7 +93,7 @@ const FastPrintPage = () => {
           </Reveal>
 
           <Reveal>
-            <div className="mt-10 flex justify-center gap-4 flex-wrap">
+            <div className="mt-10 flex justify-center gap-3 sm:gap-4 flex-wrap">
               <button
                 onClick={() => setShowQR(true)}
                 className="px-7 py-3.5 bg-lime-600 font-semibold text-white rounded-full hover:bg-lime-700 transition shadow-lg shadow-lime-600/25 hover:shadow-lime-600/40 hover:-translate-y-0.5 duration-200"
@@ -113,7 +113,7 @@ const FastPrintPage = () => {
 
       {/* STATS */}
       <Reveal>
-        <div className="max-w-5xl mx-auto px-6 -mt-8 relative z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-8 relative z-10">
           <div className="bg-white rounded-3xl shadow-xl border border-gray-100 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
             {stats.map((s, i) => (
               <div key={i} className="flex flex-col items-center py-8 px-4">
@@ -134,11 +134,11 @@ const FastPrintPage = () => {
 
       {/* FEATURES */}
       <Reveal>
-        <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 grid md:grid-cols-3 gap-6">
           {features.map((f, i) => (
             <div
               key={i}
-              className="group border border-gray-100 rounded-3xl p-8 hover:shadow-xl hover:border-lime-200 hover:-translate-y-1 transition-all duration-300"
+              className="group border border-gray-100 rounded-3xl p-6 sm:p-8 hover:shadow-xl hover:border-lime-200 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-14 h-14 rounded-2xl bg-lime-100 flex items-center justify-center mb-5 group-hover:bg-lime-600 transition-colors">
                 <f.icon
@@ -146,7 +146,7 @@ const FastPrintPage = () => {
                   size={26}
                 />
               </div>
-              <h3 className="font-bold text-xl mb-3 uppercase text-gray-900">
+              <h3 className="font-bold text-lg sm:text-xl mb-3 uppercase text-gray-900">
                 {f.title}
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
@@ -157,8 +157,8 @@ const FastPrintPage = () => {
 
       {/* QUY TRÌNH */}
       <Reveal>
-        <div className="max-w-6xl mx-auto px-6 pb-20">
-          <h2 className="text-3xl font-bold text-gray-900 text-center uppercase">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center uppercase">
             Quy trình đặt in
           </h2>
           <div className="w-20 h-1 bg-lime-600 rounded-full mx-auto mt-4 mb-12"></div>
@@ -187,15 +187,15 @@ const FastPrintPage = () => {
 
       {/* CTA CUỐI */}
       <div className="bg-linear-to-r from-lime-50 to-lime-500/20 mb-5">
-        <div className="max-w-7xl mx-auto px-6 py-16 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16 text-center">
           <Reveal>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase text-gray-900">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 uppercase text-gray-900">
               Cần in gấp? Chúng tôi luôn sẵn sàng hỗ trợ bạn
             </h2>
           </Reveal>
 
           <Reveal>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base">
               Dù bạn cần in nhanh trong vài giờ hay in số lượng lớn cho chiến
               dịch quan trọng, đội ngũ của chúng tôi luôn sẵn sàng tư vấn miễn
               phí, báo giá nhanh chóng và hỗ trợ xử lý đơn hàng một cách tối ưu
@@ -222,7 +222,7 @@ const FastPrintPage = () => {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-[popIn_0.25s_ease-out]"
+            className="relative bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl animate-[popIn_0.25s_ease-out]"
           >
             {/* Nút đóng */}
             <button

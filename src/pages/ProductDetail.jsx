@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { supabase } from "../supabase";
 import {
   Truck,
@@ -8,13 +8,14 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ChevronRight as ChevR,
   Upload,
   FileCheck,
   Printer,
   PackageCheck,
-  Share2,
   Link2,
   Check,
+  Phone,
 } from "lucide-react";
 import Reveal from "../components/Reveal";
 
@@ -26,7 +27,7 @@ const ProductDetail = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(0);
-  const [zoomOpen, setZoomOpen] = useState(false); // mở xem ảnh lớn
+  const [zoomOpen, setZoomOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const handleCopyLink = async () => {
@@ -37,15 +38,6 @@ const ProductDetail = () => {
     } catch {
       /* ignore */
     }
-  };
-
-  const shareFacebook = () => {
-    const url = encodeURIComponent(window.location.href);
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
   };
 
   useEffect(() => {
@@ -99,8 +91,8 @@ const ProductDetail = () => {
   const otherProducts = useMemo(() => {
     if (!product) return [];
     return [...products]
-      .filter((p) => p.id !== product.id) // bỏ sản phẩm đang xem
-      .sort(() => Math.random() - 0.5) // xáo trộn ngẫu nhiên
+      .filter((p) => p.id !== product.id)
+      .sort(() => Math.random() - 0.5)
       .slice(0, 4);
   }, [products, product]);
 
@@ -109,7 +101,6 @@ const ProductDetail = () => {
     return product.images?.length ? product.images : [product.thumbnail];
   }, [product]);
 
-  // Đóng zoom bằng phím Esc + chuyển ảnh bằng phím mũi tên
   useEffect(() => {
     if (!zoomOpen) return;
     const onKey = (e) => {
@@ -127,7 +118,7 @@ const ProductDetail = () => {
     return (
       <div className="max-w-7xl mx-auto px-6 py-16 animate-pulse">
         <div className="grid lg:grid-cols-2 gap-10">
-          <div className="bg-gray-200 h-125 rounded-3xl"></div>
+          <div className="bg-gray-200 h-125 rounded-sm"></div>
           <div>
             <div className="h-10 bg-gray-200 rounded w-3/4 mb-6"></div>
             <div className="h-8 bg-gray-200 rounded w-40 mb-8"></div>
@@ -156,27 +147,45 @@ const ProductDetail = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+        {/* BREADCRUMB */}
+        <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+          <Link to="/" className="hover:text-lime-700 transition">
+            Trang chủ
+          </Link>
+          <ChevR size={14} />
+          <Link to="/san-pham" className="hover:text-lime-700 transition">
+            Sản phẩm
+          </Link>
+          {product.categories?.name && (
+            <>
+              <ChevR size={14} />
+              <span className="text-gray-500">{product.categories.name}</span>
+            </>
+          )}
+          <ChevR size={14} />
+          <span className="text-gray-700 font-medium line-clamp-1">
+            {product.name}
+          </span>
+        </nav>
+
         <Reveal>
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             {/* LEFT — GALLERY */}
             <div className="lg:sticky lg:top-6">
-              {/* Ảnh chính: bấm vào để zoom */}
               <div
                 onClick={() => setZoomOpen(true)}
-                className="relative bg-gray-100 rounded-3xl overflow-hidden group cursor-zoom-in"
+                className="relative bg-gray-50 rounded-sm overflow-hidden group cursor-zoom-in border border-gray-200"
               >
                 <img
                   src={images[activeImage]}
                   alt={product.name}
-                  className="w-full h-72 sm:h-96 lg:h-137 object-cover transition duration-500 group-hover:scale-105"
+                  className="w-full h-72 sm:h-96 lg:h-137 object-cover transition duration-700 group-hover:scale-105"
                 />
-                {/* gợi ý zoom */}
-                <div className="absolute bottom-4 right-4 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition">
+                <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-sm backdrop-blur-sm opacity-0 group-hover:opacity-100 transition tracking-wide">
                   Bấm để phóng to
                 </div>
 
-                {/* mũi tên đổi ảnh (chỉ khi nhiều ảnh) */}
                 {images.length > 1 && (
                   <>
                     <button
@@ -184,7 +193,7 @@ const ProductDetail = () => {
                         e.stopPropagation();
                         goPrev();
                       }}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow flex items-center justify-center transition"
                       aria-label="Ảnh trước"
                     >
                       <ChevronLeft size={20} />
@@ -194,7 +203,7 @@ const ProductDetail = () => {
                         e.stopPropagation();
                         goNext();
                       }}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow flex items-center justify-center transition"
                       aria-label="Ảnh sau"
                     >
                       <ChevronRight size={20} />
@@ -203,17 +212,16 @@ const ProductDetail = () => {
                 )}
               </div>
 
-              {/* THUMBNAILS */}
               {images.length > 1 && (
-                <div className="flex gap-4 mt-5 overflow-x-auto pb-2">
+                <div className="flex gap-3 mt-4 overflow-x-auto pb-2">
                   {images.map((img, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveImage(index)}
-                      className={`w-16 h-16 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 shrink-0 transition ${
+                      className={`w-16 h-16 sm:w-20 sm:h-20 rounded-sm overflow-hidden border shrink-0 transition ${
                         activeImage === index
-                          ? "border-lime-600 ring-2 ring-lime-600/30"
-                          : "border-transparent hover:border-gray-300"
+                          ? "border-lime-600 ring-1 ring-lime-600/40"
+                          : "border-gray-200 hover:border-gray-400"
                       }`}
                     >
                       <img
@@ -229,68 +237,74 @@ const ProductDetail = () => {
 
             {/* RIGHT — THÔNG TIN */}
             <div>
-              {/* Nhãn danh mục */}
               {product.categories?.name && (
-                <span className="inline-block text-xs font-semibold text-lime-700 bg-lime-100 px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+                <span className="inline-block text-xs font-semibold text-lime-700 tracking-[0.15em] uppercase mb-4">
                   {product.categories.name}
                 </span>
               )}
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold leading-tight text-gray-900 tracking-tight">
                 {product.name}
               </h1>
-              <div className="w-20 h-1 bg-lime-600 rounded-full mt-4"></div>
+              <div className="w-16 h-0.5 bg-lime-600 mt-5"></div>
 
-              <p className="text-gray-600 leading-8 text-[16px] mt-6">
+              <p className="text-gray-600 leading-8 text-[15px] mt-6">
                 {product.description ||
                   "Sản phẩm chất lượng cao, thiết kế hiện đại và độ bền vượt trội. Được chế tác kỹ lưỡng để mang lại trải nghiệm tốt nhất."}
               </p>
 
-              {/* CAM KẾT (dòng ngang gọn) */}
-              <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 pb-8 border-b-2 border-gray-300">
-                <div className="flex items-center gap-2 text-sm text-gray-700">
-                  <Zap size={18} className="text-lime-600" />
+              {/* CAM KẾT — khối có viền lịch sự */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 mt-8 border border-gray-200 rounded-sm divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
+                <div className="flex items-center gap-2.5 text-sm text-gray-700 px-4 py-3.5">
+                  <Zap size={17} className="text-lime-600 shrink-0" />
                   In nhanh, in gấp
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-700">
-                  <Truck size={18} className="text-lime-600" />
+                <div className="flex items-center gap-2.5 text-sm text-gray-700 px-4 py-3.5">
+                  <Truck size={17} className="text-lime-600 shrink-0" />
                   Miễn phí giao hàng
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-700">
-                  <ShieldCheck size={18} className="text-lime-600" />
+                <div className="flex items-center gap-2.5 text-sm text-gray-700 px-4 py-3.5">
+                  <ShieldCheck size={17} className="text-lime-600 shrink-0" />
                   Kiểm tra kỹ trước in
                 </div>
               </div>
 
               {/* CTA */}
-              <div className="flex flex-wrap gap-4 mt-8">
+              <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <a
                   href="https://zalo.me/0908409075"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-7 py-3.5 bg-lime-600 text-white font-semibold rounded-full hover:bg-lime-700 transition shadow-sm"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-7 py-4 bg-lime-700 text-white font-semibold rounded-sm hover:bg-lime-800 transition tracking-wide"
                 >
-                  Liên hệ để được tư vấn & đặt in
+                  Liên hệ tư vấn & đặt in
+                </a>
+                <a
+                  href="tel:0942574386"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 border border-gray-300 text-gray-800 font-semibold rounded-sm hover:border-lime-600 hover:text-lime-700 transition"
+                >
+                  <Phone size={18} />
+                  Gọi ngay
                 </a>
               </div>
 
               {/* CHIA SẺ */}
-              <div className="flex items-center gap-3 mt-6 pb-8 border-b-2 border-gray-300">
+              <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-200">
                 <span className="text-sm text-gray-500">Chia sẻ:</span>
                 <button
                   onClick={handleCopyLink}
-                  className="flex items-center gap-2 h-10 px-4 rounded-full border border-gray-200 text-sm text-gray-600 hover:bg-lime-50 hover:text-lime-600 hover:border-lime-200 transition"
+                  className="inline-flex items-center gap-2 h-9 px-4 rounded-sm border border-gray-200 text-sm text-gray-600 hover:bg-lime-50 hover:text-lime-700 hover:border-lime-200 transition"
                 >
                   {copied ? <Check size={16} /> : <Link2 size={16} />}
                   {copied ? "Đã sao chép" : "Sao chép liên kết"}
                 </button>
               </div>
 
-              {/* MÔ TẢ CHI TIẾT (nếu có short_description) */}
+              {/* THÔNG TIN THÊM */}
               {product.short_description && (
-                <div className="mt-5">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3 uppercase">
-                    Thông tin thêm về sản phẩm
+                <div className="mt-8">
+                  <h3 className="text-sm font-bold text-gray-900 mb-3 tracking-widest uppercase">
+                    Thông tin thêm
                   </h3>
                   <p className="text-gray-600 leading-8 text-[15px] text-justify">
                     {product.short_description}
@@ -303,13 +317,17 @@ const ProductDetail = () => {
 
         {/* ===== QUY TRÌNH ĐẶT IN ===== */}
         <Reveal>
-          <div className="mt-15 max-w-5xl mx-auto uppercase">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3">
-              Quy trình đặt in
-            </h2>
-            <div className="w-20 h-1 bg-lime-600 rounded-full mx-auto mb-12"></div>
+          <div className="mt-20 sm:mt-28 max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
+                Qui trình làm việc
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 tracking-tight">
+                Đặt in trong 4 bước
+              </h2>
+            </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-sm overflow-hidden">
               {[
                 {
                   icon: Upload,
@@ -334,13 +352,13 @@ const ProductDetail = () => {
               ].map((step, i) => (
                 <div
                   key={i}
-                  className="relative border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-lime-200 transition"
+                  className="relative bg-white p-6 hover:bg-lime-50/40 transition"
                 >
-                  <span className="absolute -top-3 -left-3 w-9 h-9 rounded-full bg-lime-600 text-white text-sm font-bold flex items-center justify-center shadow">
-                    {i + 1}
+                  <span className="text-xs font-bold text-lime-700 tracking-widest">
+                    0{i + 1}
                   </span>
-                  <step.icon className="text-lime-600 mb-4" size={30} />
-                  <h3 className="font-semibold text-gray-900 mb-2">
+                  <step.icon className="text-lime-600 my-4" size={26} />
+                  <h3 className="font-semibold text-gray-900 mb-2 text-[15px]">
                     {step.title}
                   </h3>
                   <p className="text-sm text-gray-500 leading-relaxed">
@@ -354,13 +372,17 @@ const ProductDetail = () => {
 
         {/* ===== FAQ ===== */}
         <Reveal>
-          <div className="mt-15 max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3">
-              Câu hỏi thường gặp
-            </h2>
-            <div className="w-20 h-1 bg-lime-600 rounded-full mx-auto mb-12"></div>
+          <div className="mt-20 sm:mt-28 max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
+                Giải đáp
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 tracking-tight">
+                Câu hỏi thường gặp
+              </h2>
+            </div>
 
-            <div className="space-y-3">
+            <div className="border border-gray-200 rounded-sm divide-y divide-gray-200">
               {[
                 {
                   q: "In nhanh mất bao lâu?",
@@ -379,15 +401,12 @@ const ProductDetail = () => {
                   a: "Có. Chúng tôi nhận cả đơn lẻ và đơn số lượng lớn, phù hợp nhiều nhu cầu khác nhau.",
                 },
               ].map((item, i) => (
-                <details
-                  key={i}
-                  className="group border border-gray-100 rounded-2xl px-5 py-4 hover:border-lime-200 transition"
-                >
-                  <summary className="flex items-center justify-between cursor-pointer font-semibold text-gray-800 list-none uppercase">
+                <details key={i} className="group px-6 py-4">
+                  <summary className="flex items-center justify-between cursor-pointer font-semibold text-gray-800 list-none text-[15px]">
                     {item.q}
-                    <ChevronRight
-                      size={20}
-                      className="text-lime-600 transition-transform group-open:rotate-90"
+                    <ChevR
+                      size={18}
+                      className="text-lime-600 transition-transform group-open:rotate-90 shrink-0 ml-4"
                     />
                   </summary>
                   <p className="text-sm text-gray-500 leading-relaxed mt-3">
@@ -402,35 +421,40 @@ const ProductDetail = () => {
         {/* ===== SẢN PHẨM KHÁC ===== */}
         {otherProducts.length > 0 && (
           <Reveal>
-            <div className="mt-16 sm:mt-24">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 uppercase">
-                  Sản phẩm khác
-                </h2>
+            <div className="mt-20 sm:mt-28">
+              <div className="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
+                <div>
+                  <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
+                    Khám phá thêm
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1 tracking-tight">
+                    Sản phẩm khác
+                  </h2>
+                </div>
                 <button
                   onClick={() => navigate("/san-pham")}
-                  className="text-sm font-medium hover:underline hover:text-lime-600 transition shrink-0"
+                  className="text-sm font-medium text-gray-600 hover:text-lime-700 transition shrink-0"
                 >
                   Xem tất cả
                 </button>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 [scrollbar-width:none] [-ms-overflow-style:none]">
                 {otherProducts.map((item) => (
                   <div
                     key={item.id}
                     onClick={() => navigate(`/san-pham/${item.slug}`)}
-                    className="group cursor-pointer"
+                    className="group cursor-pointer snap-start shrink-0 w-[70%] sm:w-auto"
                   >
-                    <div className="bg-gray-100 rounded-3xl overflow-hidden mb-4">
+                    <div className="bg-gray-50 rounded-sm overflow-hidden mb-4 border border-gray-200">
                       <img
                         src={item.thumbnail}
                         alt={item.name}
                         loading="lazy"
-                        className="w-full h-72 object-cover transition duration-500 group-hover:scale-105"
+                        className="w-full h-64 object-cover transition duration-700 group-hover:scale-105"
                       />
                     </div>
-                    <h3 className="font-semibold text-lg line-clamp-2 group-hover:text-lime-600 transition">
+                    <h3 className="font-semibold text-[15px] line-clamp-2 text-gray-800 group-hover:text-lime-700 transition">
                       {item.name}
                     </h3>
                   </div>
@@ -442,35 +466,40 @@ const ProductDetail = () => {
 
         {/* RELATED PRODUCTS */}
         {relatedProducts.length > 0 && (
-          <div className="mt-24">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold text-gray-900">
-                Sản phẩm liên quan
-              </h2>
+          <div className="mt-20 sm:mt-28">
+            <div className="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
+              <div>
+                <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
+                  Cùng danh mục
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1 tracking-tight">
+                  Sản phẩm liên quan
+                </h2>
+              </div>
               <button
                 onClick={() => navigate("/san-pham")}
-                className="text-sm font-medium hover:underline hover:text-lime-600 transition"
+                className="text-sm font-medium text-gray-600 hover:text-lime-700 transition shrink-0"
               >
                 Xem tất cả
               </button>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 [scrollbar-width:none] [-ms-overflow-style:none]">
               {relatedProducts.map((item) => (
                 <div
                   key={item.id}
                   onClick={() => navigate(`/san-pham/${item.slug}`)}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer snap-start shrink-0 w-[70%] sm:w-auto"
                 >
-                  <div className="bg-gray-100 rounded-3xl overflow-hidden mb-4">
+                  <div className="bg-gray-50 rounded-sm overflow-hidden mb-4 border border-gray-200">
                     <img
                       src={item.thumbnail}
                       alt={item.name}
                       loading="lazy"
-                      className="w-full h-72 object-cover transition duration-500 group-hover:scale-105"
+                      className="w-full h-64 object-cover transition duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <h3 className="font-semibold text-lg line-clamp-2 group-hover:text-lime-600 transition">
+                  <h3 className="font-semibold text-[15px] line-clamp-2 text-gray-800 group-hover:text-lime-700 transition">
                     {item.name}
                   </h3>
                 </div>
@@ -484,9 +513,8 @@ const ProductDetail = () => {
       {zoomOpen && (
         <div
           onClick={() => setZoomOpen(false)}
-          className="fixed inset-0 z-9999 bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
         >
-          {/* Nút đóng */}
           <button
             onClick={() => setZoomOpen(false)}
             className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
@@ -495,15 +523,13 @@ const ProductDetail = () => {
             <X size={24} />
           </button>
 
-          {/* Ảnh lớn */}
           <img
             src={images[activeImage]}
             alt={product.name}
             onClick={(e) => e.stopPropagation()}
-            className="max-w-full max-h-[85vh] object-contain rounded-lg"
+            className="max-w-full max-h-[85vh] object-contain rounded-sm"
           />
 
-          {/* Điều hướng khi nhiều ảnh */}
           {images.length > 1 && (
             <>
               <button
@@ -527,7 +553,6 @@ const ProductDetail = () => {
                 <ChevronRight size={26} />
               </button>
 
-              {/* Đếm số ảnh */}
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/80 text-sm bg-white/10 px-3 py-1 rounded-full">
                 {activeImage + 1} / {images.length}
               </div>
