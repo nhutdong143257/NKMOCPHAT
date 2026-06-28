@@ -372,7 +372,7 @@ const ProductDetail = () => {
 
         {/* ===== FAQ ===== */}
         <Reveal>
-          <div className="mt-20 sm:mt-28 max-w-3xl mx-auto">
+          <div className="mt-10 sm:mt-28 max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
                 Giải đáp
@@ -424,7 +424,7 @@ const ProductDetail = () => {
         {/* ===== SẢN PHẨM KHÁC ===== */}
         {otherProducts.length > 0 && (
           <Reveal>
-            <div className="mt-20 sm:mt-28">
+            <div className="mt-10 sm:mt-28">
               <div className="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
                 <div>
                   <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
