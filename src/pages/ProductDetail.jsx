@@ -253,17 +253,17 @@ const ProductDetail = () => {
                   "Sản phẩm chất lượng cao, thiết kế hiện đại và độ bền vượt trội. Được chế tác kỹ lưỡng để mang lại trải nghiệm tốt nhất."}
               </p>
 
-              {/* CAM KẾT — khối có viền lịch sự */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 mt-8 border border-gray-200 rounded-sm divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
-                <div className="flex items-center gap-2.5 text-sm text-gray-700 px-4 py-3.5">
+              {/* CAM KẾT */}
+              <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8">
+                <div className="flex items-center gap-2.5 text-sm text-gray-700">
                   <Zap size={17} className="text-lime-600 shrink-0" />
                   In nhanh, in gấp
                 </div>
-                <div className="flex items-center gap-2.5 text-sm text-gray-700 px-4 py-3.5">
+                <div className="flex items-center gap-2.5 text-sm text-gray-700">
                   <Truck size={17} className="text-lime-600 shrink-0" />
                   Miễn phí giao hàng
                 </div>
-                <div className="flex items-center gap-2.5 text-sm text-gray-700 px-4 py-3.5">
+                <div className="flex items-center gap-2.5 text-sm text-gray-700">
                   <ShieldCheck size={17} className="text-lime-600 shrink-0" />
                   Kiểm tra kỹ trước in
                 </div>
@@ -327,7 +327,7 @@ const ProductDetail = () => {
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-sm overflow-hidden">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 {
                   icon: Upload,
@@ -352,7 +352,7 @@ const ProductDetail = () => {
               ].map((step, i) => (
                 <div
                   key={i}
-                  className="relative bg-white p-6 hover:bg-lime-50/40 transition"
+                  className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-md hover:border-lime-200 transition"
                 >
                   <span className="text-xs font-bold text-lime-700 tracking-widest">
                     0{i + 1}
@@ -382,7 +382,7 @@ const ProductDetail = () => {
               </h2>
             </div>
 
-            <div className="border border-gray-200 rounded-sm divide-y divide-gray-200">
+            <div className="space-y-3">
               {[
                 {
                   q: "In nhanh mất bao lâu?",
@@ -401,7 +401,10 @@ const ProductDetail = () => {
                   a: "Có. Chúng tôi nhận cả đơn lẻ và đơn số lượng lớn, phù hợp nhiều nhu cầu khác nhau.",
                 },
               ].map((item, i) => (
-                <details key={i} className="group px-6 py-4">
+                <details
+                  key={i}
+                  className="group bg-white border border-gray-100 rounded-2xl px-6 py-4 hover:border-lime-200 transition"
+                >
                   <summary className="flex items-center justify-between cursor-pointer font-semibold text-gray-800 list-none text-[15px]">
                     {item.q}
                     <ChevR
