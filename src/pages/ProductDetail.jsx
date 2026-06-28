@@ -322,7 +322,7 @@ const ProductDetail = () => {
               <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
                 Qui trình làm việc
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 tracking-tight uppercase">
                 Đặt in trong 4 bước
               </h2>
             </div>
@@ -377,7 +377,7 @@ const ProductDetail = () => {
               <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
                 Giải đáp
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 tracking-tight uppercase">
                 Câu hỏi thường gặp
               </h2>
             </div>
@@ -439,7 +439,7 @@ const ProductDetail = () => {
                 </button>
               </div>
 
-              <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 [scrollbar-width:none] [-ms-overflow-style:none]">
+              <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 scrollbar-none [-ms-overflow-style:none]">
                 {otherProducts.map((item) => (
                   <div
                     key={item.id}
@@ -484,7 +484,7 @@ const ProductDetail = () => {
               </button>
             </div>
 
-            <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 [scrollbar-width:none] [-ms-overflow-style:none]">
+            <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 scrollbar-none [-ms-overflow-style:none]">
               {relatedProducts.map((item) => (
                 <div
                   key={item.id}
@@ -513,7 +513,7 @@ const ProductDetail = () => {
       {zoomOpen && (
         <div
           onClick={() => setZoomOpen(false)}
-          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-9999 bg-black/90 flex items-center justify-center p-4"
         >
           <button
             onClick={() => setZoomOpen(false)}
