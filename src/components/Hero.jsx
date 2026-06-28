@@ -9,8 +9,8 @@ const Hero = () => {
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-lime-200/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 -left-24 w-96 h-96 bg-lime-100/50 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-16 lg:py-24">
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 py-12 sm:py-16 lg:py-24">
+        <div className="flex flex-col lg:flex-row-reverse items-center gap-8 sm:gap-12">
           {/* ẢNH */}
           <div className="shrink-0">
             <div className="relative group">
@@ -19,7 +19,7 @@ const Hero = () => {
                 <img
                   src="/MocPhatLogo.png"
                   alt="NK Mộc Phát"
-                  className="max-w-xs w-full rounded-2xl shadow-2xl transition duration-500 group-hover:scale-105 group-hover:-rotate-1"
+                  className="max-w-56 sm:max-w-xs w-full rounded-2xl shadow-2xl transition duration-500 group-hover:scale-105 group-hover:-rotate-1"
                 />
               </figure>
             </div>
@@ -27,12 +27,12 @@ const Hero = () => {
 
           {/* NỘI DUNG */}
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="text-4xl lg:text-5xl font-bold leading-tight uppercase text-gray-900 mb-5">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight uppercase text-gray-900 mb-5">
               In ấn <span className="text-lime-700">chuyên nghiệp</span> –{" "}
               <span className="text-lime-700">Giá tốt</span>
             </h1>
 
-            <p className="text-gray-600 leading-8 max-w-3xl mx-auto lg:mx-0">
+            <p className="text-gray-600 leading-7 sm:leading-8 text-sm sm:text-base max-w-3xl mx-auto lg:mx-0">
               <b className="uppercase">Công ty TNHH In Ấn NK Mộc Phát</b> là đơn
               vị được phát triển và kế thừa từ{" "}
               <b className="uppercase">Công ty TNHH In Ấn Quỳnh Ngân</b> – một
@@ -44,22 +44,22 @@ const Hero = () => {
               khách hàng.
             </p>
 
-            <p className="mt-4 text-gray-600 leading-8 max-w-3xl mx-auto lg:mx-0">
+            <p className="mt-4 text-gray-600 leading-7 sm:leading-8 text-sm sm:text-base max-w-3xl mx-auto lg:mx-0">
               Chuyên in Namecard, Tờ rơi, Catalogue, Poster với chất lượng cao.
               Nhận thiết kế theo yêu cầu và giao hàng nhanh cho doanh nghiệp và
               cá nhân tại TP.HCM.
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8">
+            <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mt-8">
               <Link to="/san-pham">
-                <button className="inline-flex items-center gap-2 px-7 py-3.5 bg-lime-700 text-white font-semibold rounded-full hover:bg-lime-800 transition shadow-lg shadow-lime-700/25 hover:shadow-lime-700/40 hover:-translate-y-0.5 duration-200">
+                <button className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-lime-700 text-white font-semibold rounded-full hover:bg-lime-800 transition shadow-lg shadow-lime-700/25 hover:shadow-lime-700/40 hover:-translate-y-0.5 duration-200">
                   Xem sản phẩm
                   <ArrowRight size={18} />
                 </button>
               </Link>
 
               <Link to="/dich-vu">
-                <button className="px-7 py-3.5 border border-gray-800 font-semibold rounded-full hover:border-lime-600 hover:text-lime-600 transition">
+                <button className="px-6 sm:px-7 py-3 sm:py-3.5 border border-gray-800 font-semibold rounded-full hover:border-lime-600 hover:text-lime-600 transition">
                   Xem dịch vụ
                 </button>
               </Link>

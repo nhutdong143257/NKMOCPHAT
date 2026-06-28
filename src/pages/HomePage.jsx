@@ -7,7 +7,7 @@ import Reveal from "../components/Reveal";
 
 const HomePage = () => {
   return (
-    <div className="container mx-auto px-6 py-10 caret-transparent">
+    <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-10 caret-transparent">
       <Hero />
 
       {/* Services */}
@@ -18,7 +18,7 @@ const HomePage = () => {
       {/* Special Products */}
       <Reveal>
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 uppercase">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 uppercase">
             sản phẩm nổi bật
           </h2>
 
