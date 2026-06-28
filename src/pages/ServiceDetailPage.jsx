@@ -17,7 +17,7 @@ const ServiceDetailPage = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-12">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       {/* HERO */}
       <ServiceHero service={service} />
 
@@ -29,9 +29,7 @@ const ServiceDetailPage = () => {
 
       {/* GALLERY */}
       <ServiceGallery images={service.images} />
-      
     </section>
-    
   );
 };
 

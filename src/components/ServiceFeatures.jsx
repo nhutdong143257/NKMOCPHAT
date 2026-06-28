@@ -20,10 +20,10 @@ const features = [
 
 const ServiceFeatures = () => {
   return (
-    <section className="mt-24">
+    <section className="mt-16 sm:mt-24">
       {/* TITLE */}
       <div className="text-center max-w-2xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900 uppercase">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 uppercase">
           Tại sao chọn chúng tôi
         </h2>
 
@@ -37,7 +37,7 @@ const ServiceFeatures = () => {
       </div>
 
       {/* FEATURES */}
-      <div className="grid md:grid-cols-3 gap-8 mt-14">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-14">
         {features.map((item, index) => (
           <div
             key={index}

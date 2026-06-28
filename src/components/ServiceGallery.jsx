@@ -3,9 +3,9 @@ import OutstandingProduct from "./OutstandingProduct";
 
 const ServiceGallery = ({ images }) => {
   return (
-    <div className="mt-24">
+    <div className="mt-16 sm:mt-24">
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 uppercase">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 uppercase">
           Sản phẩm đã thực hiện
         </h2>
         <p className="text-gray-500 mt-4 leading-relaxed">

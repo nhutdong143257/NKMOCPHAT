@@ -4,7 +4,6 @@ import { X } from "lucide-react";
 const ServiceHero = ({ service }) => {
   const [zoomOpen, setZoomOpen] = useState(false);
 
-  // Đóng zoom bằng phím Esc
   useEffect(() => {
     if (!zoomOpen) return;
     const onKey = (e) => {
@@ -15,10 +14,9 @@ const ServiceHero = ({ service }) => {
   }, [zoomOpen]);
 
   return (
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
       {/* ẢNH */}
       <div className="relative group">
-        {/* đốm trang trí phía sau */}
         <div className="absolute -inset-4 bg-lime-200/40 rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition pointer-events-none" />
         <div
           onClick={() => setZoomOpen(true)}
@@ -27,9 +25,8 @@ const ServiceHero = ({ service }) => {
           <img
             src={service.img}
             alt={service.title}
-            className="w-full h-105 object-cover transition duration-700 group-hover:scale-105"
+            className="w-full h-72 sm:h-96 lg:h-105 object-cover transition duration-700 group-hover:scale-105"
           />
-          {/* gợi ý zoom */}
           <div className="absolute bottom-4 right-4 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition">
             Bấm để phóng to
           </div>
@@ -44,19 +41,21 @@ const ServiceHero = ({ service }) => {
           </span>
         )}
 
-        <h1 className="text-4xl lg:text-5xl font-bold leading-tight uppercase text-gray-900">
+        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold leading-tight uppercase text-gray-900">
           {service.title}
         </h1>
 
         <div className="w-20 h-1 bg-lime-600 my-5 rounded-full"></div>
 
         {service.shortDesc && (
-          <p className="text-lg font-semibold text-lime-700 mb-4 uppercase">
+          <p className="text-base sm:text-lg font-semibold text-lime-700 mb-4 uppercase">
             {service.shortDesc}
           </p>
         )}
 
-        <p className="text-gray-600 leading-8 mb-8">{service.desc}</p>
+        <p className="text-gray-600 leading-7 sm:leading-8 text-sm sm:text-base mb-8">
+          {service.desc}
+        </p>
 
         <div className="flex flex-wrap gap-4">
           <a
@@ -76,7 +75,6 @@ const ServiceHero = ({ service }) => {
           onClick={() => setZoomOpen(false)}
           className="fixed inset-0 z-9999 bg-black/90 flex items-center justify-center p-4"
         >
-          {/* Nút đóng */}
           <button
             onClick={() => setZoomOpen(false)}
             className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
@@ -85,7 +83,6 @@ const ServiceHero = ({ service }) => {
             <X size={24} />
           </button>
 
-          {/* Ảnh lớn */}
           <img
             src={service.img}
             alt={service.title}

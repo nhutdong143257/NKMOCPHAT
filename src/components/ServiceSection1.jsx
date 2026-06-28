@@ -14,14 +14,14 @@ const ServicesSection1 = () => {
   }, {});
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-12">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
       {/* LOOP CATEGORY */}
       {Object.entries(groupedServices).map(([category, items]) => (
-        <div key={category} className="mb-16">
+        <div key={category} className="mb-12 sm:mb-16">
           {/* CATEGORY TITLE */}
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-8">
-              <h2 className="text-3xl font-bold text-gray-800 uppercase">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 uppercase">
                 {category}
               </h2>
               <div className="w-24 h-1 bg-lime-600 mx-auto mt-4 rounded-full"></div>
@@ -30,7 +30,7 @@ const ServicesSection1 = () => {
 
           {/* GRID */}
           <Reveal>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {items.map((service) => (
                 <Link
                   to={`/dich-vu/${service.slug}`}
@@ -42,7 +42,7 @@ const ServicesSection1 = () => {
                     <img
                       src={service.img}
                       alt={service.title}
-                      className="h-56 w-full object-cover group-hover:scale-105 transition duration-300"
+                      className="h-52 sm:h-56 w-full object-cover group-hover:scale-105 transition duration-300"
                     />
                   </div>
 

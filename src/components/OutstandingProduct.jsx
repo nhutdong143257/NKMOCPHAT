@@ -26,13 +26,19 @@ const OutstandingProduct = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* PRODUCT GRID */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* MOBILE: carousel vuốt ngang | DESKTOP: lưới 4 cột */}
+      <div
+        className="
+          flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4
+          md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:mx-0 md:px-0 md:pb-0
+          [scrollbar-width:none] [-ms-overflow-style:none]
+        "
+      >
         {products.map((p) => (
           <div
             key={p.id}
             onClick={() => navigate(`/san-pham/${p.slug}`)}
-            className="group cursor-pointer"
+            className="group cursor-pointer snap-start shrink-0 w-[70%] sm:w-[45%] md:w-auto"
           >
             <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:border-lime-200 hover:-translate-y-1 transition-all duration-300">
               {/* ẢNH */}
@@ -64,7 +70,7 @@ const OutstandingProduct = () => {
       </div>
 
       {/* BUTTON */}
-      <div className="flex justify-center items-center mt-12">
+      <div className="flex justify-center items-center mt-8 md:mt-12">
         <Link to="/san-pham">
           <button className="px-7 py-2.5 border border-lime-600 text-lime-600 font-medium rounded-full hover:bg-lime-600 hover:text-white transition">
             Xem tất cả sản phẩm

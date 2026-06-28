@@ -5,13 +5,13 @@ import { services } from "../data/service";
 
 const ServicesSection = () => {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       {/* Title */}
-      <div className="text-center max-w-2xl mx-auto mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 uppercase">
+      <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 uppercase">
           Dịch vụ của chúng tôi
         </h2>
-        <p className="text-gray-500 mt-4 leading-relaxed">
+        <p className="text-gray-500 mt-4 leading-relaxed text-sm sm:text-base">
           Giải pháp in ấn đa dạng, chất lượng cao, đáp ứng mọi nhu cầu từ cá
           nhân đến doanh nghiệp.
         </p>
@@ -19,7 +19,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {services.slice(0, 6).map((service) => (
           <Link
             to={`/dich-vu/${service.slug}`}
@@ -32,14 +32,14 @@ const ServicesSection = () => {
                 src={service.img}
                 alt={service.title}
                 loading="lazy"
-                className="h-60 w-full object-cover transition duration-500 group-hover:scale-110"
+                className="h-52 sm:h-60 w-full object-cover transition duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
             </div>
 
             {/* NỘI DUNG */}
-            <div className="flex flex-col flex-1 p-6 text-center">
-              <h3 className="text-xl font-bold text-lime-700 uppercase mb-3 group-hover:text-lime-600 transition">
+            <div className="flex flex-col flex-1 p-5 sm:p-6 text-center">
+              <h3 className="text-lg sm:text-xl font-bold text-lime-700 uppercase mb-3 group-hover:text-lime-600 transition">
                 {service.title}
               </h3>
 
@@ -59,7 +59,7 @@ const ServicesSection = () => {
         ))}
       </div>
 
-      <div className="flex justify-center items-center mt-12">
+      <div className="flex justify-center items-center mt-10 sm:mt-12">
         <Link to="/dich-vu">
           <button className="px-7 py-2.5 border border-lime-600 text-lime-600 font-medium rounded-full hover:bg-lime-600 hover:text-white transition">
             Xem tất cả dịch vụ
