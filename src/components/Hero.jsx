@@ -59,7 +59,7 @@ const Hero = () => {
               </Link>
 
               <Link to="/dich-vu">
-                <button className="px-6 sm:px-7 py-3 sm:py-3.5 border border-gray-800 font-semibold rounded-full hover:border-lime-600 hover:text-lime-600 transition">
+                <button className="px-6 sm:px-7 py-3 sm:py-3.5 border border-gray-800 text-black font-semibold rounded-full hover:border-lime-600 hover:text-lime-600 transition">
                   Xem dịch vụ
                 </button>
               </Link>
