@@ -23,7 +23,7 @@ const Footer = () => {
   )}&output=embed`;
 
   return (
-    <footer className="bg-gray-100 border-t border-lime-100 caret-transparent">
+    <footer className="bg-lime-300/40 border-t border-lime-100 caret-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
           {/* CỘT 1 — Logo + giới thiệu */}
@@ -56,13 +56,9 @@ const Footer = () => {
               Liên hệ tư vấn
             </h3>
             <div className="w-12 h-1 bg-lime-600 rounded-full mb-5"></div>
-            <p className="text-lime-700 uppercase font-bold mb-4">
-              Công ty TNHH NK Mộc Phát
-            </p>
-
             <ul className="space-y-3.5 text-sm text-gray-700">
               <li className="flex gap-3">
-                <span className="w-8 h-8 rounded-full bg-lime-100 text-lime-600 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-lime-100 text-black flex items-center justify-center shrink-0">
                   <FontAwesomeIcon icon={faPhoneVolume} />
                 </span>
                 <span className="self-center">
@@ -73,7 +69,7 @@ const Footer = () => {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-8 h-8 rounded-full bg-lime-100 text-lime-600 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-lime-100 text-black flex items-center justify-center shrink-0">
                   <FontAwesomeIcon icon={faMapPin} />
                 </span>
                 <span className="self-center">
@@ -82,7 +78,7 @@ const Footer = () => {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-8 h-8 rounded-full bg-lime-100 text-lime-600 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-lime-100 text-black flex items-center justify-center shrink-0">
                   <FontAwesomeIcon icon={faBriefcase} />
                 </span>
                 <span className="self-center">
@@ -90,7 +86,7 @@ const Footer = () => {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-8 h-8 rounded-full bg-lime-100 text-lime-600 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-lime-100 text-black flex items-center justify-center shrink-0">
                   <FontAwesomeIcon icon={faEnvelope} />
                 </span>
                 <span className="self-center">
@@ -104,7 +100,7 @@ const Footer = () => {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-8 h-8 rounded-full bg-lime-100 text-lime-600 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-lime-100 text-black flex items-center justify-center shrink-0">
                   <FontAwesomeIcon icon={faClock} />
                 </span>
                 <div>

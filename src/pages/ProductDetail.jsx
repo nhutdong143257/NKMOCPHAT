@@ -81,6 +81,7 @@ const ProductDetail = () => {
 
   const relatedProducts = useMemo(() => {
     if (!product) return [];
+    products.map((p) => p.category_id);
     return products
       .filter(
         (p) => p.category_id === product.category_id && p.id !== product.id,
@@ -421,72 +422,26 @@ const ProductDetail = () => {
           </div>
         </Reveal>
 
-        {/* ===== SẢN PHẨM KHÁC ===== */}
-        {otherProducts.length > 0 && (
-          <Reveal>
-            <div className="mt-10 sm:mt-28">
-              <div className="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
-                <div>
-                  <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
-                    Khám phá thêm
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1 tracking-tight">
-                    Sản phẩm khác
-                  </h2>
-                </div>
-                <button
-                  onClick={() => navigate("/san-pham")}
-                  className="text-sm font-medium text-gray-600 hover:text-lime-700 transition shrink-0"
-                >
-                  Xem tất cả
-                </button>
-              </div>
-
-              <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 scrollbar-none [-ms-overflow-style:none]">
-                {otherProducts.map((item) => (
-                  <div
-                    key={item.id}
-                    onClick={() => navigate(`/san-pham/${item.slug}`)}
-                    className="group cursor-pointer snap-start shrink-0 w-[70%] sm:w-auto"
-                  >
-                    <div className="bg-gray-50 rounded-sm overflow-hidden mb-4 border border-gray-200">
-                      <img
-                        src={item.thumbnail}
-                        alt={item.name}
-                        loading="lazy"
-                        className="w-full h-64 object-cover transition duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-[15px] line-clamp-2 text-gray-800 group-hover:text-lime-700 transition">
-                      {item.name}
-                    </h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        )}
-
         {/* RELATED PRODUCTS */}
-        {relatedProducts.length > 0 && (
-          <div className="mt-20 sm:mt-28">
-            <div className="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
-              <div>
-                <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
-                  Cùng danh mục
-                </span>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1 tracking-tight">
-                  Sản phẩm liên quan
-                </h2>
-              </div>
-              <button
-                onClick={() => navigate("/san-pham")}
-                className="text-sm font-medium text-gray-600 hover:text-lime-700 transition shrink-0"
-              >
-                Xem tất cả
-              </button>
+        <div className="mt-20 sm:mt-28">
+          <div className="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
+            <div>
+              <span className="text-xs font-semibold text-lime-700 tracking-[0.2em] uppercase">
+                Cùng danh mục
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1 tracking-tight uppercase">
+                Sản phẩm liên quan
+              </h2>
             </div>
+            <button
+              onClick={() => navigate("/san-pham")}
+              className="text-sm font-medium text-gray-600 hover:text-lime-700 transition shrink-0"
+            >
+              Xem tất cả
+            </button>
+          </div>
 
+          {relatedProducts.length > 0 ? (
             <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 scrollbar-none [-ms-overflow-style:none]">
               {relatedProducts.map((item) => (
                 <div
@@ -508,8 +463,12 @@ const ProductDetail = () => {
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="py-16 text-center text-gray-400 text-[15px]">
+              Không tìm thấy sản phẩm.
+            </div>
+          )}
+        </div>
       </div>
 
       {/* ===== LIGHTBOX ZOOM ẢNH ===== */}

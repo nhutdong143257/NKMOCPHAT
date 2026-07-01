@@ -11,7 +11,9 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
-  const [activeCate, setActiveCate] = useState("all"); // "all" hoặc id danh mục
+  const [activeCate, setActiveCate] = useState("all");
+  const [visibleCounts, setVisibleCounts] = useState({});
+  const PER_PAGE = 8;
 
   // ================= FETCH =================
   useEffect(() => {
@@ -196,7 +198,13 @@ const ProductPage = () => {
       ) : (
         categories.map((cate, cateIndex) => {
           const productByCate = productsByCate.get(cate.id);
+
           if (!productByCate || productByCate.length === 0) return null;
+
+          const visible = visibleCounts[cate.id] ?? PER_PAGE; // mặc định hiện 8
+          const shownProducts = productByCate.slice(0, visible);
+          const hasMore = productByCate.length > visible;
+          const isExpanded = visible > PER_PAGE;
 
           return (
             <section key={cate.id} className="mb-20">
@@ -219,7 +227,7 @@ const ProductPage = () => {
       scrollbar-none [-ms-overflow-style:none]
     "
                 >
-                  {productByCate.map((p, idx) => {
+                  {shownProducts.map((p, idx) => {
                     const eager = cateIndex === 0 && idx < 4;
                     return (
                       <div
@@ -252,6 +260,39 @@ const ProductPage = () => {
                   })}
                 </div>
               </Reveal>
+
+              {/* NÚT XEM THÊM / THU GỌN */}
+              {(hasMore || isExpanded) && (
+                <div className="flex justify-center gap-3 mt-10">
+                  {hasMore && (
+                    <button
+                      onClick={() =>
+                        setVisibleCounts((prev) => ({
+                          ...prev,
+                          [cate.id]: visible + PER_PAGE,
+                        }))
+                      }
+                      className="px-8 py-3 rounded-full border border-lime-600 text-lime-700 font-medium hover:bg-lime-600 hover:text-white transition"
+                    >
+                      Xem thêm
+                    </button>
+                  )}
+
+                  {isExpanded && (
+                    <button
+                      onClick={() =>
+                        setVisibleCounts((prev) => ({
+                          ...prev,
+                          [cate.id]: PER_PAGE,
+                        }))
+                      }
+                      className="px-8 py-3 rounded-full border border-lime-600 text-lime-700 font-medium hover:bg-lime-600 hover:text-white transition"
+                    >
+                      Thu gọn
+                    </button>
+                  )}
+                </div>
+              )}
             </section>
           );
         })
