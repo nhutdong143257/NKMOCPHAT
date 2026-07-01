@@ -11,6 +11,7 @@ import NewPage from "./pages/NewPage";
 import FastPrintPage from "./pages/FastPrintPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import ProductDetail from "./pages/ProductDetail";
+import ContactPage from "./pages/ContactPage";
 
 // Admin Pages
 import Login from "./pages/admin/Login";
@@ -62,6 +63,7 @@ function App() {
         <Route path="/tin-tuc/:slug" element={<PostDetailPage />} />
 
         <Route path="/in-nhanh" element={<FastPrintPage />} />
+        <Route path="/lien-he" element={<ContactPage />} />
 
         {/* ADMIN PUBLIC */}
         <Route path="/admin/login" element={<Login />} />

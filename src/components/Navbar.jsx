@@ -26,6 +26,10 @@ const Navbar = () => {
           <NavLink to="/tin-tuc" className={navItemClass}>
             Tin tức
           </NavLink>
+          
+          <NavLink to="/lien-he" className={navItemClass}>
+            Liên hệ
+          </NavLink>
 
           <NavLink to="/in-nhanh" className={navItemClass}>
             In nhanh
