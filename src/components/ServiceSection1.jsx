@@ -21,7 +21,7 @@ const ServicesSection1 = () => {
           {/* CATEGORY TITLE */}
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 uppercase">
+              <h2 className="text-4xl font-bold uppercase bg-linear-to-r from-lime-500 via-green-500 to-emerald-600 bg-clip-text text-transparent">
                 {category}
               </h2>
               <div className="w-24 h-1 bg-lime-600 mx-auto mt-4 rounded-full"></div>

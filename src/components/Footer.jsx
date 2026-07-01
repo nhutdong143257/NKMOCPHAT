@@ -23,7 +23,7 @@ const Footer = () => {
   )}&output=embed`;
 
   return (
-    <footer className="bg-lime-300/40 border-t border-lime-100 caret-transparent">
+    <footer className="bg-linear-to-b from-lime-100/80 via-white to-gray-50 border-t border-lime-100 caret-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
           {/* CỘT 1 — Logo + giới thiệu */}

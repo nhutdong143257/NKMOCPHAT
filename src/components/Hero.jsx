@@ -28,8 +28,14 @@ const Hero = () => {
           {/* NỘI DUNG */}
           <div className="flex-1 text-center lg:text-left">
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight uppercase text-gray-900 mb-5">
-              In ấn <span className="text-lime-700">chuyên nghiệp</span> –{" "}
-              <span className="text-lime-700">Giá tốt</span>
+              In ấn{" "}
+              <span className="bg-linear-to-r from-lime-500 via-green-500 to-emerald-600 bg-clip-text text-transparent">
+                chuyên nghiệp
+              </span>{" "}
+              –{" "}
+              <span className="bg-linear-to-r from-lime-500 via-green-500 to-emerald-600 bg-clip-text text-transparent">
+                Giá tốt
+              </span>
             </h1>
 
             <p className="text-gray-600 leading-7 sm:leading-8 text-sm sm:text-base max-w-3xl mx-auto lg:mx-0">
@@ -50,16 +56,23 @@ const Hero = () => {
               cá nhân tại TP.HCM.
             </p>
 
-            <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mt-8">
+            <div className="flex flex-wrap gap-3 sm:gap-5 justify-center lg:justify-start mt-8">
+              {/* Nút 1 */}
               <Link to="/san-pham">
-                <button className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-lime-700 text-white font-semibold rounded-full hover:bg-lime-800 transition shadow-lg shadow-lime-700/25 hover:shadow-lime-700/40 hover:-translate-y-0.5 duration-200">
+                <button className="btn-draw rounded-lgtext-gray-800 hover:text-lime-800">
+                  <svg>
+                    <rect x="0" y="0" width="100%" height="100%" />
+                  </svg>
                   Xem sản phẩm
-                  <ArrowRight size={18} />
                 </button>
               </Link>
 
+              {/* Nút 2 */}
               <Link to="/dich-vu">
-                <button className="px-6 sm:px-7 py-3 sm:py-3.5 border border-gray-800 text-black font-semibold rounded-full hover:border-lime-600 hover:text-lime-600 transition">
+                <button className="btn-draw rounded-lg text-gray-800 hover:text-lime-800">
+                  <svg>
+                    <rect x="0" y="0" width="100%" height="100%" />
+                  </svg>
                   Xem dịch vụ
                 </button>
               </Link>

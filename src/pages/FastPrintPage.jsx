@@ -11,52 +11,59 @@ import {
   Award,
   Users,
 } from "lucide-react";
+
 import Reveal from "../components/Reveal";
 import CountUp from "../components/CountUp";
 
 const FastPrintPage = () => {
   const [showQR, setShowQR] = useState(false);
 
+  /* ================= FEATURES ================= */
+
   const features = [
     {
       icon: Zap,
-      title: "In nhanh, in gấp",
-      desc: "Hỗ trợ xử lý và in ấn trong thời gian cực nhanh, phù hợp cho các đơn hàng gấp như sự kiện, hội thảo, khai trương hoặc chiến dịch marketing. Cam kết đảm bảo tiến độ nhưng vẫn giữ chất lượng in sắc nét, rõ ràng và ổn định.",
+      title: "In nhanh - In gấp",
+      desc: "Đáp ứng các đơn hàng cần hoàn thành trong thời gian ngắn với chất lượng in sắc nét, màu sắc chính xác và tiến độ đúng cam kết.",
     },
     {
       icon: Truck,
-      title: "Giao hàng nhanh",
-      desc: "Hỗ trợ giao hàng tận nơi trên toàn khu vực, đảm bảo đóng gói cẩn thận, vận chuyển an toàn và đúng thời gian cam kết. Khách hàng có thể yên tâm nhận sản phẩm mà không cần lo lắng về tiến độ giao nhận.",
+      title: "Giao hàng tận nơi",
+      desc: "Đóng gói cẩn thận và giao hàng nhanh chóng, giúp khách hàng nhận sản phẩm đúng hẹn mà không cần mất thời gian di chuyển.",
     },
     {
       icon: FileCheck,
-      title: "Kiểm tra kỹ lưỡng",
-      desc: "Trước khi in, đội ngũ kỹ thuật sẽ kiểm tra file thiết kế, nội dung và chất lượng hình ảnh để đảm bảo không xảy ra sai sót. Đồng thời hỗ trợ tư vấn chỉnh sửa nếu cần thiết để sản phẩm đạt chất lượng tốt nhất.",
+      title: "Kiểm tra file miễn phí",
+      desc: "Đội ngũ kỹ thuật kiểm tra file thiết kế trước khi in, hỗ trợ chỉnh sửa cơ bản nhằm hạn chế sai sót và đảm bảo thành phẩm đẹp nhất.",
     },
   ];
+
+  /* ================= QUY TRÌNH ================= */
 
   const steps = [
     {
       icon: Upload,
-      title: "Gửi file & yêu cầu",
-      desc: "Gửi file thiết kế cùng yêu cầu về số lượng, chất liệu, kích thước.",
+      title: "Tiếp nhận yêu cầu",
+      desc: "Tiếp nhận file thiết kế cùng các yêu cầu về số lượng, kích thước và chất liệu in.",
     },
     {
       icon: FileCheck,
-      title: "Báo giá & duyệt",
-      desc: "Kiểm tra file, tư vấn chỉnh sửa nếu cần và báo giá nhanh chóng.",
+      title: "Tư vấn & Báo giá",
+      desc: "Kiểm tra file, tư vấn phương án phù hợp và gửi báo giá nhanh chóng.",
     },
     {
       icon: Printer,
-      title: "Tiến hành in",
-      desc: "In sắc nét, đúng tiến độ với hệ thống máy in hiện đại.",
+      title: "Sản xuất",
+      desc: "Tiến hành in bằng hệ thống máy hiện đại, đảm bảo chất lượng và tiến độ.",
     },
     {
       icon: PackageCheck,
-      title: "Giao hàng",
-      desc: "Đóng gói cẩn thận và giao tận nơi đúng hẹn.",
+      title: "Bàn giao sản phẩm",
+      desc: "Kiểm tra thành phẩm, đóng gói cẩn thận và giao tận nơi theo đúng cam kết.",
     },
   ];
+
+  /* ================= THỐNG KÊ ================= */
 
   const stats = [
     {
@@ -64,194 +71,283 @@ const FastPrintPage = () => {
       value: 4,
       prefix: "2-",
       suffix: "h",
-      label: "Thời gian in nhanh",
+      label: "Hoàn thành đơn gấp",
     },
-    { icon: Users, value: 200, suffix: "+", label: "Khách hàng tin tưởng" },
-    { icon: Award, value: 100, suffix: "%", label: "Cam kết chất lượng" },
+    {
+      icon: Users,
+      value: 200,
+      suffix: "+",
+      label: "Khách hàng tin tưởng",
+    },
+    {
+      icon: Award,
+      value: 100,
+      suffix: "%",
+      label: "Cam kết chất lượng",
+    },
   ];
 
   return (
     <div className="bg-white">
-      {/* HERO */}
-      <div className="relative overflow-hidden bg-linear-to-b from-lime-50 to-gray-100">
-        {/* đốm trang trí mờ */}
-        <div className="absolute -bottom-32 -left-24 w-96 h-96 bg-lime-100/50 rounded-full blur-3xl pointer-events-none" />
+      {/* ================= HERO ================= */}
+      <section className="relative overflow-hidden bg-linear-to-b from-lime-50 via-white to-gray-50">
+        {/* Background */}
+        <div className="absolute -top-24 -right-20 w-96 h-96 rounded-full bg-lime-200/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-32 -left-24 w-105 h-105 rounded-full bg-green-100/40 blur-3xl pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+          <div className="max-w-4xl mx-auto text-center">
+            <Reveal>
+              <span className="inline-flex items-center rounded-full bg-lime-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-lime-700">
+                Dịch vụ in nhanh chuyên nghiệp
+              </span>
+            </Reveal>
+
+            <Reveal>
+              <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-gray-900 uppercase">
+                In Nhanh - In Gấp
+                <br />
+                <span className="bg-linear-to-r from-lime-500 via-green-500 to-emerald-600 bg-clip-text text-transparent">
+                  Hoàn Thành Đúng Hẹn
+                </span>
+              </h1>
+            </Reveal>
+
+            <Reveal>
+              <p className="mt-8 max-w-3xl mx-auto text-base sm:text-lg leading-8 text-gray-600">
+                NK Mộc Phát cung cấp giải pháp in ấn nhanh cho doanh nghiệp và
+                cá nhân. Từ danh thiếp, tờ rơi, brochure đến tem nhãn, decal...
+                tất cả đều được sản xuất với chất lượng cao, báo giá minh bạch
+                và giao đúng tiến độ.
+              </p>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-10 flex justify-center gap-4 flex-wrap">
+                <button
+                  onClick={() => setShowQR(true)}
+                  className="rounded-full bg-lime-600 px-8 py-4 text-white font-semibold shadow-xl shadow-lime-500/30 transition hover:-translate-y-1 hover:bg-lime-700"
+                >
+                  Nhận báo giá miễn phí
+                </button>
+
+                <Link to="/san-pham">
+                  <button className="rounded-full border border-gray-300 bg-white px-8 py-4 font-semibold text-gray-700 transition hover:border-lime-600 hover:text-lime-600 hover:shadow-lg">
+                    Khám phá sản phẩm
+                  </button>
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= STATS ================= */}
+
+      <Reveal>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-10 relative z-10">
+          <div className="grid sm:grid-cols-3 rounded-3xl border border-gray-100 bg-white shadow-2xl overflow-hidden">
+            {stats.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center px-6 py-10 border-b sm:border-b-0 sm:border-r last:border-r-0 border-gray-100"
+              >
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-lime-100">
+                  <item.icon size={30} className="text-lime-600" />
+                </div>
+
+                <div className="text-4xl font-black text-gray-900">
+                  <CountUp
+                    end={item.value}
+                    prefix={item.prefix || ""}
+                    suffix={item.suffix || ""}
+                  />
+                </div>
+
+                <p className="mt-2 text-center text-gray-500">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+      {/* ================= FEATURES ================= */}
+
+      <section className="py-20 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <Reveal>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight uppercase">
-              Dịch vụ <span className="text-lime-600">In Nhanh - In Gấp</span>
-            </h1>
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="inline-flex rounded-full bg-lime-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-lime-700">
+                Vì sao chọn NK Mộc Phát
+              </span>
+
+              <h2 className="mt-5 text-3xl lg:text-4xl font-black text-gray-900">
+                Giải pháp in ấn
+                <span className="text-lime-600">
+                  {" "}
+                  nhanh chóng & chuyên nghiệp
+                </span>
+              </h2>
+
+              <p className="mt-6 text-gray-600 leading-8">
+                Chúng tôi không chỉ mang đến những sản phẩm in chất lượng, mà
+                còn đồng hành cùng khách hàng trong suốt quá trình từ tư vấn,
+                kiểm tra file đến giao hàng tận nơi.
+              </p>
+            </div>
           </Reveal>
 
+          <div className="mt-14 grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <Reveal key={index}>
+                <div className="group relative overflow-hidden rounded-3xl border border-gray-100 bg-white p-8 transition duration-300 hover:-translate-y-2 hover:border-lime-200 hover:shadow-2xl">
+                  <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-lime-100/40 blur-2xl transition group-hover:scale-125"></div>
+
+                  <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-lime-100 transition group-hover:bg-lime-600">
+                    <feature.icon
+                      size={30}
+                      className="text-lime-600 group-hover:text-white transition"
+                    />
+                  </div>
+
+                  <h3 className="mt-6 text-xl font-bold text-gray-900">
+                    {feature.title}
+                  </h3>
+
+                  <p className="mt-4 text-gray-500 leading-7">{feature.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= QUY TRÌNH ================= */}
+
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <Reveal>
-            <p className="mt-6 text-gray-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-              Chúng tôi cung cấp dịch vụ in ấn nhanh chóng, đáp ứng các đơn hàng
-              gấp cho sự kiện, marketing và nhu cầu phát sinh. Cam kết chất
-              lượng sắc nét, đúng tiến độ và hỗ trợ tận tâm.
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="inline-flex rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-lime-700 border border-lime-100">
+                Quy trình làm việc
+              </span>
+
+              <h2 className="mt-5 text-3xl lg:text-4xl font-black text-gray-900">
+                Chỉ với
+                <span className="text-lime-600"> 4 bước đơn giản</span>
+              </h2>
+
+              <p className="mt-6 text-gray-600 leading-8">
+                Quy trình được tối ưu giúp khách hàng tiết kiệm thời gian, dễ
+                dàng theo dõi tiến độ và nhận sản phẩm đúng hẹn.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-16 grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+            {steps.map((step, index) => (
+              <Reveal key={index}>
+                <div className="relative rounded-3xl bg-white border border-gray-100 p-8 hover:shadow-xl hover:border-lime-200 transition">
+                  <div className="absolute -top-5 left-8 flex h-10 w-10 items-center justify-center rounded-full bg-lime-600 text-white font-bold shadow-lg">
+                    {index + 1}
+                  </div>
+
+                  <div className="mt-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-lime-100">
+                    <step.icon size={30} className="text-lime-600" />
+                  </div>
+
+                  <h3 className="mt-6 text-xl font-bold text-gray-900">
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-4 text-gray-500 leading-7">{step.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* ================= CTA ================= */}
+
+      <section className="relative overflow-hidden py-24">
+        {/* Background */}
+        <div className="absolute inset-0 bg-linear-to-br from-lime-50 via-white to-gray-50"></div>
+
+        <div className="absolute -top-24 -right-20 w-96 h-96 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute -bottom-32 -left-20 w-105 h-105 rounded-full bg-white/10 blur-3xl"></div>
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center text-gray-900">
+          <Reveal>
+            <span className="inline-flex rounded-full bg-white/15 backdrop-blur-md px-4 py-2 text-xs font-bold uppercase tracking-[0.2em]">
+              Sẵn sàng bắt đầu?
+            </span>
+
+            <h2 className="mt-6 text-4xl lg:text-5xl font-black leading-tight">
+              Hãy để NK Mộc Phát
+              <br />
+              đồng hành cùng bạn
+            </h2>
+
+            <p className="mt-8 max-w-3xl mx-auto text-lg leading-8 text-lime-800">
+              Từ tư vấn, báo giá đến hoàn thiện sản phẩm, đội ngũ của chúng tôi
+              luôn sẵn sàng hỗ trợ nhanh chóng, tận tâm và chuyên nghiệp.
             </p>
           </Reveal>
 
           <Reveal>
-            <div className="mt-10 flex justify-center gap-3 sm:gap-4 flex-wrap">
+            <div className="mt-10 flex justify-center gap-4 flex-wrap">
               <button
                 onClick={() => setShowQR(true)}
-                className="px-7 py-3.5 bg-lime-600 font-semibold text-white rounded-full hover:bg-lime-700 transition shadow-lg shadow-lime-600/25 hover:shadow-lime-600/40 hover:-translate-y-0.5 duration-200"
+                className="rounded-full bg-lime-700 px-8 py-4 font-bold text-white shadow-xl transition hover:-translate-y-1 hover:shadow-2xl"
               >
-                Liên hệ ngay
+                Nhận báo giá ngay
               </button>
 
-              <Link to="/san-pham">
-                <button className="px-7 py-3.5 border font-semibold border-gray-800 rounded-full hover:border-lime-600 hover:text-lime-600 transition">
-                  Xem sản phẩm
-                </button>
-              </Link>
+              <button className="rounded-full border border-gray-300 bg-white px-8 py-4 font-semibold text-gray-700 transition hover:-translate-y-1 hover:shadow-2xl">
+                Hotline: 0909 123 456
+              </button>
             </div>
           </Reveal>
         </div>
-      </div>
+      </section>
 
-      {/* STATS */}
-      <Reveal>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-8 relative z-10">
-          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
-            {stats.map((s, i) => (
-              <div key={i} className="flex flex-col items-center py-8 px-4">
-                <s.icon className="text-lime-600 mb-3" size={28} />
-                <span className="text-3xl font-bold text-gray-900">
-                  <CountUp
-                    end={s.value}
-                    prefix={s.prefix || ""}
-                    suffix={s.suffix || ""}
-                  />
-                </span>
-                <span className="text-sm text-gray-500 mt-1">{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Reveal>
+      {/* ================= QR POPUP ================= */}
 
-      {/* FEATURES */}
-      <Reveal>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 grid md:grid-cols-3 gap-6">
-          {features.map((f, i) => (
-            <div
-              key={i}
-              className="group border border-gray-100 rounded-3xl p-6 sm:p-8 hover:shadow-xl hover:border-lime-200 hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-lime-100 flex items-center justify-center mb-5 group-hover:bg-lime-600 transition-colors">
-                <f.icon
-                  className="text-lime-600 group-hover:text-white transition-colors"
-                  size={26}
-                />
-              </div>
-              <h3 className="font-bold text-lg sm:text-xl mb-3 uppercase text-gray-900">
-                {f.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Reveal>
-
-      {/* QUY TRÌNH */}
-      <Reveal>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center uppercase">
-            Quy trình đặt in
-          </h2>
-          <div className="w-20 h-1 bg-lime-600 rounded-full mx-auto mt-4 mb-12"></div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((step, i) => (
-              <div
-                key={i}
-                className="relative border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-lime-200 transition"
-              >
-                <span className="absolute -top-3 -left-3 w-9 h-9 rounded-full bg-lime-600 text-white text-sm font-bold flex items-center justify-center shadow">
-                  {i + 1}
-                </span>
-                <step.icon className="text-lime-600 mb-4" size={30} />
-                <h3 className="font-semibold text-gray-900 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
-      {/* CTA CUỐI */}
-      <div className="bg-linear-to-r from-lime-50 to-lime-500/20 mb-5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16 text-center">
-          <Reveal>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 uppercase text-gray-900">
-              Cần in gấp? Chúng tôi luôn sẵn sàng hỗ trợ bạn
-            </h2>
-          </Reveal>
-
-          <Reveal>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base">
-              Dù bạn cần in nhanh trong vài giờ hay in số lượng lớn cho chiến
-              dịch quan trọng, đội ngũ của chúng tôi luôn sẵn sàng tư vấn miễn
-              phí, báo giá nhanh chóng và hỗ trợ xử lý đơn hàng một cách tối ưu
-              nhất
-            </p>
-          </Reveal>
-
-          <Reveal>
-            <button
-              onClick={() => setShowQR(true)}
-              className="px-8 py-3.5 bg-white text-gray-900 font-semibold rounded-full hover:bg-lime-200 transition shadow-lg hover:-translate-y-0.5 duration-200"
-            >
-              Liên hệ tư vấn ngay
-            </button>
-          </Reveal>
-        </div>
-      </div>
-
-      {/* POPUP QR ZALO */}
       {showQR && (
         <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
           onClick={() => setShowQR(false)}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm px-4 animate-[fadeIn_0.2s_ease-out]"
         >
           <div
+            className="relative w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl animate-[popIn_0.25s_ease-out]"
           >
-            {/* Nút đóng */}
+            {/* Close */}
+
             <button
               onClick={() => setShowQR(false)}
-              className="absolute top-3 right-4 text-2xl text-gray-400 hover:text-gray-700 transition"
-              aria-label="Đóng"
+              className="absolute right-5 top-5 h-10 w-10 rounded-full bg-gray-100 text-gray-600 transition hover:bg-red-500 hover:text-white"
             >
-              &times;
+              ✕
             </button>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Kết bạn Zalo để được tư vấn
-            </h3>
-            <p className="text-sm text-gray-500 mb-5">
-              Quét mã QR bên dưới để liên hệ nhanh
-            </p>
+            <div className="text-center">
+              <h3 className="mt-6 text-3xl font-black text-gray-900">
+                Quét mã QR
+              </h3>
 
-            {/* Khung viền cho QR nổi bật */}
-            <div className="inline-block p-3 rounded-2xl border-2 border-lime-100 bg-lime-50/50">
-              <img
-                src="/QRZalo.jpg"
-                alt="Mã QR Zalo"
-                className="w-56 h-56 object-contain mx-auto"
-              />
+              <p className="mt-3 text-gray-500 leading-7">
+                Mở Zalo và quét mã QR bên dưới để nhận tư vấn, báo giá nhanh
+                hoặc gửi file thiết kế.
+              </p>
+
+              <div className="mt-8 flex justify-center">
+                <img
+                  src="/QRZalo.jpg"
+                  alt="QR Zalo"
+                  className="h-64 w-64 rounded-2xl border border-gray-200 object-cover"
+                />
+              </div>
             </div>
-
-            <p className="text-sm text-gray-500 mt-5">
-              Mở Zalo, bấm quét QR để kết bạn và nhắn tin
-            </p>
           </div>
         </div>
       )}
