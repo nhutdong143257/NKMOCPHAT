@@ -262,8 +262,9 @@ const ProductPage = () => {
               </Reveal>
 
               {/* NÚT XEM THÊM / THU GỌN */}
+              {/* NÚT XEM THÊM / THU GỌN */}
               {(hasMore || isExpanded) && (
-                <div className="flex justify-center gap-3 mt-10">
+                <div className="hidden sm:flex justify-center gap-3 mt-10">
                   {hasMore && (
                     <button
                       onClick={() =>
