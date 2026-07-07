@@ -22,7 +22,7 @@ const ServiceDescription = ({ slug }) => {
         {/* KHUNG NỘI DUNG (lớp mờ chỉ nằm trong đây) */}
         <div className="relative">
           <div
-            className={`prose prose-gray max-w-none transition-all duration-500 ease-in-out overflow-hidden ${
+            className={`prose prose-gray max-w-none text-gray-700 [&_p]:text-gray-700 [&_li]:text-gray-700 [&_h2]:text-gray-900 [&_h3]:text-gray-900 [&_h4]:text-gray-900 [&_strong]:text-gray-900 [&_a]:text-lime-700 transition-all duration-500 ease-in-out overflow-hidden ${
               expanded ? "max-h-[5000px]" : "max-h-52"
             }`}
           >
