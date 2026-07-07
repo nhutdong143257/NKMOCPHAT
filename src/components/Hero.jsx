@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="flex flex-wrap gap-3 sm:gap-5 justify-center lg:justify-start mt-8">
               {/* Nút 1 */}
               <Link to="/san-pham">
-                <button className="btn-draw rounded-lgtext-gray-800 hover:text-lime-800">
+                <button className="btn-draw btn-draw-sm rounded-lg text-gray-800 hover:text-lime-800">
                   <svg>
                     <rect x="0" y="0" width="100%" height="100%" />
                   </svg>
@@ -69,7 +69,7 @@ const Hero = () => {
 
               {/* Nút 2 */}
               <Link to="/dich-vu">
-                <button className="btn-draw rounded-lg text-gray-800 hover:text-lime-800">
+                <button className="btn-draw btn-draw-sm rounded-lg text-gray-800 hover:text-lime-800">
                   <svg>
                     <rect x="0" y="0" width="100%" height="100%" />
                   </svg>

@@ -300,33 +300,6 @@ const Header = () => {
             )}
           </div>
         </div>
-
-        {/* CONTACT */}
-        <div className="flex items-center gap-2 md:gap-6 caret-transparent shrink-0">
-          {/* GỌI ĐIỆN */}
-          <a
-            href="tel:0942574386"
-            className="flex items-center justify-center gap-3 border rounded-full bg-olive-50 hover:bg-olive-100 transition w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-3"
-          >
-            <img src="/icon/call.png" alt="Gọi điện" className="w-6 h-6" />
-            <span className="hidden md:inline text-sm font-semibold">
-              0942 574 386
-            </span>
-          </a>
-
-          {/* EMAIL */}
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=tranphung.qnco@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 border rounded-full bg-olive-50 hover:bg-olive-100 transition w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-3"
-          >
-            <img src="/icon/gmail.png" alt="Gửi email" className="w-6 h-6" />
-            <span className="hidden md:inline text-sm font-semibold">
-              tranphung.qnco@gmail.com
-            </span>
-          </a>
-        </div>
       </div>
     </header>
   );

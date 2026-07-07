@@ -120,6 +120,35 @@ body {
   stroke-dashoffset: 48;
   transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
+/* ===== Nút mobile: nền lime, bỏ hiệu ứng ===== */
+.btn-draw-sm {
+  padding: 8px 20px;
+  font-size: 14px;
+  background-color: #65a30d; /* nền lime-600 */
+  color: #ffffff; /* chữ trắng cho nổi trên nền */
+}
+
+/* Trên mobile: ẩn viền SVG, tắt hiệu ứng hover */
+.btn-draw-sm svg {
+  display: none;
+}
+.btn-draw-sm:hover {
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Từ sm (640px) trở lên: bỏ nền, bật lại viền chạy */
+@media (min-width: 640px) {
+  .btn-draw-sm {
+    padding: 12px 32px;
+    font-size: 16px;
+    background-color: transparent; /* bỏ nền, về trong suốt */
+    color: #1f2937; /* chữ xám đậm như desktop */
+  }
+  .btn-draw-sm svg {
+    display: block;
+  }
+}
 
 /* ===== Flip card ===== */
 .flip-card {
