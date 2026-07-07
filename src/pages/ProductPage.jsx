@@ -118,7 +118,7 @@ const ProductPage = () => {
             placeholder="Tìm sản phẩm theo tên..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-white border border-gray-200 pl-12 pr-4 h-12 rounded-full outline-none focus:border-lime-500 focus:ring-4 focus:ring-lime-500/15 shadow-sm transition"
+            className="w-full bg-white text-gray-900 placeholder:text-gray-400 border border-gray-200 pl-12 pr-4 h-12 rounded-full outline-none focus:border-lime-500 focus:ring-4 focus:ring-lime-500/15 shadow-sm transition"
           />
           {search && (
             <button
@@ -183,7 +183,7 @@ const ProductPage = () => {
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
-              className="mb-3 text-gray-300"
+              className="mb-3 text-gray-900"
             >
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -211,7 +211,7 @@ const ProductPage = () => {
               {/* CATEGORY TITLE */}
               <Reveal>
                 <div className="text-center mb-12">
-                  <h2 className="text-4xl font-bold uppercase tracking-wide text-gray-900">
+                  <h2 className="text-4xl font-bold uppercase bg-linear-to-r from-lime-500 via-green-500 to-emerald-600 bg-clip-text text-transparent">
                     {cate.name}
                   </h2>
                   <div className="w-24 h-1 bg-lime-600 mx-auto mt-5 rounded-full"></div>
