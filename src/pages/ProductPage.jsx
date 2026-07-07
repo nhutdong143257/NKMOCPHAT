@@ -144,10 +144,10 @@ const ProductPage = () => {
         </div>
 
         {/* Nút lọc danh mục */}
-        <div className="flex flex-wrap justify-center gap-2">
+        <div className="flex sm:flex-wrap justify-start sm:justify-center gap-2 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 scrollbar-none [-ms-overflow-style:none]">
           <button
             onClick={() => setActiveCate("all")}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition ${
+            className={`shrink-0 whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition ${
               activeCate === "all"
                 ? "bg-lime-600 text-white shadow-md shadow-lime-600/25"
                 : "bg-white text-gray-600 border border-gray-200 hover:border-lime-300 hover:text-lime-600"
@@ -159,7 +159,7 @@ const ProductPage = () => {
             <button
               key={c.id}
               onClick={() => setActiveCate(c.id)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition ${
+              className={`shrink-0 whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition ${
                 String(activeCate) === String(c.id)
                   ? "bg-lime-600 text-white shadow-md shadow-lime-600/25"
                   : "bg-white text-gray-600 border border-gray-200 hover:border-lime-300 hover:text-lime-600"
