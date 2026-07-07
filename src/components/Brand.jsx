@@ -53,7 +53,7 @@ const Brand = () => {
                 <img
                   src={brand.logo}
                   alt={brand.name}
-                  className="max-h-10 sm:max-h-12 max-w-[70%] object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300"
+                  className="max-h-10 sm:max-h-12 max-w-[70%] object-contain group-hover:scale-110 transition duration-300"
                 />
               </div>
             ))}
@@ -72,7 +72,7 @@ const Brand = () => {
               <img
                 src={brand.logo}
                 alt={brand.name}
-                className="max-h-10 sm:max-h-12 max-w-[70%] object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-300"
+                className="max-h-10 sm:max-h-12 max-w-[70%] object-contain group-hover:scale-110 transition duration-300"
               />
             </div>
           ))}

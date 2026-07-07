@@ -9,6 +9,12 @@ const Breadcrumbs = () => {
 
   const pathnames = location.pathname.split("/").filter((x) => x);
 
+  // Ẩn ở trang chi tiết sản phẩm (/san-pham/:slug) — trang đó có breadcrumb riêng
+  if (pathnames[0] === "san-pham" && pathnames.length > 1) return null;
+
+  // Ẩn ở trang chi tiết bài viết (/tin-tuc/:slug) — trang đó cũng có breadcrumb riêng
+  if (pathnames[0] === "tin-tuc" && pathnames.length > 1) return null;
+
   const nameMap = {
     "dich-vu": "Dịch vụ",
     "san-pham": "Sản phẩm",
@@ -29,9 +35,6 @@ const Breadcrumbs = () => {
           </li>
 
           {pathnames.map((value, index) => {
-            const isProductDetail =
-              pathnames[0] === "san-pham" && pathnames.length > 1;
-            if (isProductDetail && index > 0) return null;
             const to = "/" + pathnames.slice(0, index + 1).join("/");
             const name = nameMap[value] || value;
 

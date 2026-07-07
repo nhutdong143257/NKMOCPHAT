@@ -81,7 +81,6 @@ const ProductDetail = () => {
 
   const relatedProducts = useMemo(() => {
     if (!product) return [];
-    products.map((p) => p.category_id);
     return products
       .filter(
         (p) => p.category_id === product.category_id && p.id !== product.id,
