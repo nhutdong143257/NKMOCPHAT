@@ -112,7 +112,7 @@ export default function NewPage() {
                     )}
 
                     <div className="p-4">
-                      <h3 className="font-semibold text-lg line-clamp-2">
+                      <h3 className="text-gray-900 font-semibold text-lg line-clamp-2">
                         {p.title}
                       </h3>
                       <p className="text-sm text-gray-500 mt-2">{p.category}</p>
