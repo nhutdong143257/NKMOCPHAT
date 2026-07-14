@@ -210,8 +210,8 @@ const ProductPage = () => {
             <section key={cate.id} className="mb-20">
               {/* CATEGORY TITLE */}
               <Reveal>
-                <div className="text-center mb-12">
-                  <h2 className="text-4xl font-bold uppercase bg-linear-to-r from-lime-500 via-green-500 to-emerald-600 bg-clip-text text-transparent">
+                <div className="text-center mb-12 px-4">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase bg-linear-to-r from-lime-500 via-green-500 to-emerald-600 bg-clip-text text-transparent wrap-break-word">
                     {cate.name}
                   </h2>
                   <div className="w-24 h-1 bg-lime-600 mx-auto mt-5 rounded-full"></div>
@@ -261,7 +261,6 @@ const ProductPage = () => {
                 </div>
               </Reveal>
 
-              {/* NÚT XEM THÊM / THU GỌN */}
               {/* NÚT XEM THÊM / THU GỌN */}
               {(hasMore || isExpanded) && (
                 <div className="hidden sm:flex justify-center gap-3 mt-10">

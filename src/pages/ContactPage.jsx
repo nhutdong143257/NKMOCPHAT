@@ -189,166 +189,48 @@ const ContactPage = () => {
           </div>
         </div>
 
-        {/* CTA cuối - 2 flip card */}
+        {/* CTA cuối - 2 card */}
         <Reveal>
-          <div className="mt-20 grid sm:grid-cols-2 gap-6">
-            {/* ==================== ZALO ==================== */}
-            <div
-              className="flip-card w-full h-72 cursor-pointer"
-              onClick={(e) => e.currentTarget.classList.toggle("flipped")}
-            >
-              <div className="flip-card-inner rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                {/* ================= FRONT ================= */}
-                <div className="flip-card-front relative rounded-3xl bg-linear-to-br from-emerald-50 via-green-50 to-lime-100 border border-emerald-200 overflow-hidden">
-                  {/* Glow */}
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-emerald-300/20 rounded-full blur-3xl" />
-                  <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-lime-200/20 rounded-full blur-3xl" />
-
-                  {/* Badge */}
-                  <div className="absolute top-5 right-5 z-10">
-                    <span className="px-3 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-wide shadow-lg">
-                      ⚡ Phản hồi ~5 phút
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative h-full flex flex-col items-center justify-center text-center px-8 py-8 gap-4">
-                    <div className="relative inline-flex p-2 w-16 h-16 rounded-lg bg-white items-center justify-center shadow-md">
-                      <MessageCircle size={30} className="text-emerald-600" />
-                      <span className="absolute inset-0 rounded-lg ring-4 ring-emerald-500/20"></span>
-                    </div>
-
-                    <h3 className="text-2xl font-extrabold text-gray-900">
-                      Nhắn Zalo nhận báo giá ngay
-                    </h3>
-
-                    <p className="text-sm text-gray-600 leading-7 max-w-xs">
-                      Gửi hình ảnh, file thiết kế hoặc yêu cầu in ấn. Chúng tôi
-                      sẽ tư vấn phương án phù hợp và báo giá nhanh chóng hoàn
-                      toàn miễn phí.
-                    </p>
-
-                    <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-700">
-                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                      Đang trực tuyến
-                    </div>
-                  </div>
-                </div>
-
-                {/* ================= BACK ================= */}
-                <div className="flip-card-back relative rounded-3xl bg-linear-to-br from-emerald-500 via-green-500 to-lime-500 text-white overflow-hidden">
-                  <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
-
-                  <div className="relative h-full flex flex-col items-center justify-center text-center px-8 py-8 gap-4">
-                    <div className="inline-flex p-2 w-14 h-14 rounded-2xl bg-white items-center justify-center shadow-lg">
-                      <MessageCircle size={28} className="text-emerald-600" />
-                    </div>
-
-                    <p className="text-xs uppercase tracking-[0.3em] font-bold text-emerald-100">
-                      ZALO HỖ TRỢ
-                    </p>
-
-                    <h2 className="text-4xl font-black leading-none">
-                      0908 409 075
-                    </h2>
-
-                    <div className="space-y-2 text-sm text-emerald-50">
-                      <p>✓ Báo giá trong vài phút</p>
-                      <p>✓ Nhận file thiết kế 24/7</p>
-                    </div>
-
-                    <a
-                      href="https://zalo.me/0908409075"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 font-bold text-emerald-700 shadow-lg transition hover:scale-105 hover:shadow-xl"
-                    >
-                      <MessageCircle size={18} />
-                      Chat ngay
-                    </a>
-                  </div>
-                </div>
-              </div>
+          <div className="mt-14 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 px-4 sm:px-0">
+            {/* ZALO */}
+            <div className="rounded-2xl border border-gray-200 p-5 sm:p-8 text-center flex flex-col items-center gap-2 sm:gap-3">
+              <MessageCircle
+                size={24}
+                className="text-emerald-500 sm:w-7 sm:h-7"
+              />
+              <h3 className="text-base sm:text-xl font-bold text-gray-800">
+                Nhắn Zalo nhận báo giá
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-500">
+                Phản hồi nhanh trong 5 phút
+              </p>
+              <a
+                href="https://zalo.me/0908409075"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 sm:mt-2 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold text-white hover:bg-emerald-600 transition"
+              >
+                <MessageCircle size={16} />
+                Chat ngay
+              </a>
             </div>
 
-            {/* ==================== HOTLINE ==================== */}
-            <div
-              className="flip-card w-full h-72 cursor-pointer"
-              onClick={(e) => e.currentTarget.classList.toggle("flipped")}
-            >
-              <div className="flip-card-inner rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                {/* ================= FRONT ================= */}
-                <div className="flip-card-front relative rounded-3xl bg-linear-to-br from-orange-50 via-amber-50 to-yellow-100 border border-orange-200 overflow-hidden">
-                  {/* Glow */}
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-orange-300/20 rounded-full blur-3xl" />
-                  <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-yellow-300/20 rounded-full blur-3xl" />
-
-                  {/* Badge */}
-                  <div className="absolute top-5 right-5 z-10">
-                    <span className="px-3 py-1 rounded-full bg-orange-600 text-white text-[10px] font-bold uppercase tracking-wide shadow-lg">
-                      🔥 Hỗ trợ tức thì
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative h-full flex flex-col items-center justify-center text-center px-8 py-8 gap-4">
-                    <div className="relative inline-flex p-2 w-16 h-16 rounded-2xl bg-white items-center justify-center shadow-md">
-                      <Phone size={30} className="text-orange-600" />
-                      <span className="absolute inset-0 rounded-2xl ring-4 ring-orange-500/20"></span>
-                    </div>
-
-                    <h3 className="text-2xl font-extrabold text-gray-900">
-                      Cần gấp? Gọi ngay!
-                    </h3>
-
-                    <p className="text-sm text-gray-600 leading-7 max-w-xs">
-                      Trao đổi trực tiếp với chuyên viên để được tư vấn về chất
-                      liệu, kích thước, số lượng và thời gian hoàn thành đơn
-                      hàng.
-                    </p>
-
-                    <div className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-xs font-semibold text-orange-700">
-                      ☎ Luôn sẵn sàng hỗ trợ
-                    </div>
-                  </div>
-                </div>
-
-                {/* ================= BACK ================= */}
-                <div className="flip-card-back relative rounded-3xl bg-linear-to-br from-orange-500 via-amber-500 to-yellow-500 text-white overflow-hidden">
-                  <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
-
-                  <div className="relative h-full flex flex-col items-center justify-center text-center px-8 py-8 gap-4">
-                    <div className="inline-flex p-2 w-14 h-14 rounded-2xl bg-white items-center justify-center shadow-lg">
-                      <Phone size={28} className="text-orange-600" />
-                    </div>
-
-                    <p className="text-xs uppercase tracking-[0.3em] font-bold text-orange-100">
-                      HOTLINE
-                    </p>
-
-                    <h2 className="text-4xl font-black leading-none">
-                      0942 574 386
-                    </h2>
-
-                    <div className="space-y-2 text-sm text-orange-50">
-                      <p>✓ Tư vấn trực tiếp</p>
-                      <p>✓ Báo giá tức thì</p>
-                    </div>
-
-                    <a
-                      href="tel:0942574386"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 font-bold text-orange-700 shadow-lg transition hover:scale-105 hover:shadow-xl"
-                    >
-                      <Phone size={18} />
-                      Gọi ngay
-                    </a>
-                  </div>
-                </div>
-              </div>
+            {/* HOTLINE */}
+            <div className="rounded-2xl border border-gray-200 p-5 sm:p-8 text-center flex flex-col items-center gap-2 sm:gap-3">
+              <Phone size={24} className="text-orange-500 sm:w-7 sm:h-7" />
+              <h3 className="text-base sm:text-xl font-bold text-gray-800">
+                Cần gấp? Gọi ngay
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-500">
+                Hỗ trợ tư vấn trực tiếp
+              </p>
+              <a
+                href="tel:0942574386"
+                className="mt-1 sm:mt-2 inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold text-white hover:bg-orange-600 transition"
+              >
+                <Phone size={16} />
+                Gọi ngay
+              </a>
             </div>
           </div>
         </Reveal>
